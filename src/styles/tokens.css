@@ -1,0 +1,14 @@
+:root {
+  --color-primary: #102a24;
+  --color-primary-alt: #1b3b34;
+  --color-background: #f6f1e8;
+  --color-accent: #a98b63;
+  --color-text: #1c1c1c;
+  --color-white: #e8dfd1;
+
+  --font-sans: "Manrope", sans-serif;
+  --font-serif: "Roboto Serif", serif;
+
+  --container: 1200px;
+  --page-padding: 24px;
+}
