@@ -1,0 +1,215 @@
+---
+import logoGladson from "../assets/icons/logo-white.svg";
+---
+
+<section class="main-services" id="servicos" aria-labelledby="services-title">
+  <div class="container">
+    <div class="services-header">
+      <span>Principais Áreas</span>
+
+      <div class="services-title">
+        <h2 id="services-title">
+          Atuação focada nos principais momentos da sucessão
+        </h2>
+
+        <p>
+          Do planejamento patrimonial em vida à condução do inventário após o
+          falecimento.
+        </p>
+      </div>
+    </div>
+
+    <div class="services-content">
+      <div class="services-list">
+        <button class="service-item is-active" data-service="planejamento">
+          <span>01</span>
+          <strong>Planejamento Sucessório</strong>
+        </button>
+
+        <button class="service-item" data-service="inventarios">
+          <span>02</span>
+          <strong>Inventários</strong>
+        </button>
+
+        <div class="services-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="services-more">
+          <a href="/areas-de-atuacao">
+            Explorar áreas de atuação
+            <span>
+              <img src={logoGladson.src} alt="" width="24" height="13" />
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="services-display">teste</div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .main-services {
+    background-color: var(--color-primary);
+    padding-block: 80px;
+  }
+
+  .services-header {
+    margin-bottom: 48px;
+  }
+
+  .services-header span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding-inline: 16px;
+    width: fit-content;
+    margin-bottom: 24px;
+
+    background-color: var(--color-primary-alt);
+    border-radius: 999px;
+    font-size: 14px;
+    color: rgba(246, 241, 232, 0.5);
+  }
+
+  .services-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .services-title h2 {
+    max-width: 760px;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 50px;
+
+    color: var(--color-background);
+  }
+
+  .services-title p {
+    width: 300px;
+    font-size: 15px;
+    color: var(--color-background);
+    opacity: 50%;
+  }
+
+  .services-content {
+    display: flex;
+    gap: 16px;
+  }
+
+  .services-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    gap: 16px;
+  }
+
+  .service-item {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 116px;
+    padding-inline: 32px;
+    padding-block: 20px;
+    overflow: hidden;
+    width: 100%;
+
+    font-family: var(--font-sans);
+    background-color: var(--color-primary-alt);
+    border: 0;
+    border-radius: 28px;
+
+    cursor: pointer;
+    transition: all 180ms ease;
+  }
+
+  .service-item span {
+    font-size: 140px;
+    font-weight: 600;
+    line-height: 0.8;
+    margin-bottom: -50px;
+    color: var(--color-background);
+    opacity: 10%;
+  }
+
+  .service-item strong {
+    font-size: 20px;
+
+    color: var(--color-background);
+    opacity: 40%;
+    font-weight: 400;
+  }
+
+  .service-item.is-active span,
+  .service-item.is-active strong {
+    opacity: 1;
+  }
+
+  .service-item:hover {
+    scale: 1.02;
+  }
+
+  .services-dots {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-block: 48px;
+  }
+
+  .services-dots span {
+    width: 10px;
+    height: 10px;
+
+    background-color: var(--color-background);
+    border-radius: 100px;
+    opacity: 20%;
+  }
+
+  .services-more a {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    height: 60px;
+    padding-left: 24px;
+    padding-right: 5px;
+
+    background-color: var(--color-background);
+    border-radius: 999px;
+    font-size: 14px;
+
+    transition: all 180ms ease;
+  }
+
+  .services-more a:hover {
+    background-color: var(--color-white);
+  }
+
+  .services-more a span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 52px;
+    width: 52px;
+
+    background-color: var(--color-text);
+    border-radius: 999;
+  }
+
+  .services-more a span img {
+    width: 24px;
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  .services-display {
+    flex: 1;
+  }
+</style>
