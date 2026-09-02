@@ -13,12 +13,7 @@ import documento from "../assets/images/hero-tag-3.webp";
 <section class="hero" id="inicio">
   <div class="hero-overlay"></div>
 
-  <Image
-    src={heroBg}
-    alt=""
-    class="hero-bg"
-    loading="eager"
-  />
+  <Image src={heroBg} alt="" class="hero-bg" loading="eager" />
 
   <div class="hero-inner">
     <div>
@@ -103,27 +98,34 @@ import documento from "../assets/images/hero-tag-3.webp";
     border-radius: 24px;
   }
 
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: var(--color-primary);
+  }
+  
   .hero-bg {
     position: absolute;
     inset: 0;
+    z-index: 1;
+
     width: 100%;
     height: 100%;
     object-fit: cover;
+
     filter: blur(4px);
     opacity: 10%;
   }
 
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: var(--color-primary);
-  }
-
   .hero-inner {
+    position: relative;
+    z-index: 2;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
+
     min-height: 760px;
     padding-inline: 24px;
     padding-block: 32px;
@@ -134,7 +136,7 @@ import documento from "../assets/images/hero-tag-3.webp";
     font-size: clamp(72px, 9vw, 171px);
     font-weight: 400;
     line-height: 0.8;
-    letter-spacing: 8.15%;
+    letter-spacing: 0.0815em;
     text-align: start;
     white-space: nowrap;
     margin-bottom: 24px;
@@ -144,10 +146,12 @@ import documento from "../assets/images/hero-tag-3.webp";
 
   .hero-lawyer {
     position: absolute;
+    z-index: 3;
+
     left: 50%;
     bottom: -205px;
+
     transform: translateX(-50%);
-    z-index: 2;
   }
 
   .hero-lawyer :global(img) {
@@ -312,7 +316,7 @@ import documento from "../assets/images/hero-tag-3.webp";
       top: 360px;
     }
 
-    .hero-tag-location {
+    .hero-tag-lawyer {
       right: 24px;
       top: 430px;
     }
@@ -343,7 +347,7 @@ import documento from "../assets/images/hero-tag-3.webp";
       top: 330px;
     }
 
-    .hero-tag-location {
+    .hero-tag-lawyer {
       right: 8px;
       top: 410px;
     }
