@@ -1,0 +1,201 @@
+---
+import logoGladson from "../assets/icons/logo-gladson-black.png";
+import arrowIcon from "../assets/icons/arrow-up-right.svg";
+
+const navItems = [
+  { label: "Início", href: "#inicio" },
+  { label: "Serviços", href: "#servicos" },
+  { label: "Sobre", href: "#sobre" },
+  { label: "Contato", href: "#contato" },
+];
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Gladson Conceição - Página inicial">
+      <img
+        src={logoGladson.src}
+        alt=""
+        class="brand-symbol"
+        width="76"
+        height="50"
+      />
+
+      <div class="brand-text">
+        <strong>Gladson Conceição</strong>
+        <span>Advogado</span>
+      </div>
+    </a>
+
+    <nav aria-label="Navegação principal">
+      <ul class="nav-list">
+        {
+          navItems.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="header-contact">
+      <a class="phone" href="tel:+5579988697480"> (79) 98869-7480</a>
+
+      <a
+        class="contact-button"
+        href="https://wa.me/5579988697480"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Fale comigo
+
+        <img
+          src={arrowIcon.src}
+          alt=""
+          aria-hidden="true"
+          width="10"
+          height="10"
+        />
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    padding-block: 16px;
+    padding-inline: 24px;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .brand-symbol {
+    width: 76px;
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
+  .brand-text strong {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .brand-text span {
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-list a {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    font-size: 16px;
+    font-weight: 300;
+    opacity: 60%;
+    transition: all 180ms ease;
+  }
+
+  .nav-list a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    width: 0;
+    height: 1px;
+    background: var(--color-text);
+    transition: width 180ms ease;
+  }
+
+  .nav-list a:hover,
+  .nav-list a:focus-visible {
+    opacity: 100%;
+  }
+
+  .nav-list a:hover::after,
+  .nav-list a:focus-visible::after {
+    width: 110%;
+  }
+
+  .header-contact {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .phone {
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  .contact-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 40px;
+    padding-inline: 20px;
+    border-radius: 999px;
+    background: var(--color-primary);
+    color: var(--color-background);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 180ms ease;
+  }
+
+  .contact-button img {
+    margin-top: 1px;
+}
+
+  .contact-button:hover,
+  .contact-button:focus-visible {
+    background: var(--color-primary-alt);
+  }
+
+  @media (max-width: 900px) {
+    nav,
+    .phone {
+      display: none;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .brand-text strong {
+      font-size: 17px;
+    }
+
+    .brand-text span {
+      font-size: 13px;
+    }
+
+    .contact-button {
+      padding-inline: 16px;
+      font-size: 13px;
+    }
+  }
+</style>
