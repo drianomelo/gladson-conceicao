@@ -1,0 +1,358 @@
+---
+import { Image } from "astro:assets";
+
+import heroBg from "../assets/images/hero-bg.webp";
+import gladsonHero from "../assets/images/hero-gladson.webp";
+import arrowIcon from "../assets/icons/arrow-long-down.svg";
+
+import patrimonio from "../assets/images/hero-tag-1.webp";
+import familia from "../assets/images/hero-tag-2.webp";
+import documento from "../assets/images/hero-tag-3.webp";
+---
+
+<section class="hero" id="inicio">
+  <div class="hero-overlay"></div>
+
+  <Image
+    src={heroBg}
+    alt=""
+    class="hero-bg"
+    loading="eager"
+    fetchpriority="high"
+  />
+
+  <div class="hero-inner">
+    <div>
+      <h1>Direito Sucessório</h1>
+
+      <div class="hero-copy">
+        <div class="hero-copy-left">
+          <p>
+            Orientação jurídica em inventários, planejamento sucessório e
+            organização patrimonial, com atendimento claro e personalizado.
+          </p>
+        </div>
+
+        <div class="hero-copy-right">
+          <p>
+            Atuação em Sergipe e atendimento em todo o Brasil para questões
+            relacionadas à sucessão e patrimônio.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-bottom">
+      <div class="hero-pills">
+        <span>Inventários</span>
+        <span>Planejamento Sucessório</span>
+        <span>Testamentos</span>
+        <span>Doações</span>
+      </div>
+
+      <a href="#servicos">
+        Conheça nossa atuação
+        <span>
+          <img
+            src={arrowIcon.src}
+            alt=""
+            aria-hidden="true"
+            width="17"
+            height="14"
+          />
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-lawyer">
+    <Image
+      src={gladsonHero}
+      alt="Gladson Conceição, advogado"
+      loading="eager"
+      fetchpriority="high"
+    />
+
+    <div class="hero-tag hero-tag-services">
+      <div class="tag-images">
+        <Image src={documento} alt="" width={36} height={36} />
+        <Image src={patrimonio} alt="" width={36} height={36} />
+        <Image src={familia} alt="" width={36} height={36} />
+      </div>
+
+      <div>
+        <strong>Direito Sucessório</strong>
+        <span>Planejamento • Inventário • Partilha</span>
+      </div>
+    </div>
+
+    <div class="hero-tag hero-tag-lawyer">
+      <strong>Gladson Conceição dos Santos</strong>
+      <span>Advogado • OAB/SE 14.418</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    margin-inline: 20px;
+    position: relative;
+    min-height: 760px;
+    overflow: hidden;
+    border-radius: 24px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(4px);
+    opacity: 10%;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--color-primary);
+  }
+
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    min-height: 760px;
+    padding-inline: 24px;
+    padding-block: 32px;
+  }
+
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(72px, 9vw, 171px);
+    font-weight: 400;
+    line-height: 0.8;
+    letter-spacing: 8.15%;
+    text-align: start;
+    white-space: nowrap;
+    margin-bottom: 24px;
+
+    color: var(--color-background);
+  }
+
+  .hero-lawyer {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+
+  .hero-lawyer :global(img) {
+    width: 830px;
+    height: auto;
+  }
+
+  .hero-copy {
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-background);
+    font-size: 18px;
+    line-height: 23px;
+    font-weight: 300;
+    opacity: 50%;
+  }
+
+  .hero-copy-left {
+    width: 440px;
+  }
+
+  .hero-copy-right {
+    width: 405px;
+    text-align: right;
+  }
+
+  .hero-tag {
+    position: absolute;
+    z-index: 3;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 60px;
+
+    padding-inline: 10px;
+    border: 1px solid rgba(246, 241, 232, 0.15);
+    border-radius: 5px;
+
+    background: rgba(246, 241, 232, 0.2);
+    backdrop-filter: blur(20px);
+
+    color: var(--color-background);
+  }
+
+  .hero-tag strong,
+  .hero-tag span {
+    display: block;
+    line-height: 1.05;
+  }
+
+  .hero-tag strong {
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  .hero-tag span {
+    margin-top: 2px;
+    font-size: 11px;
+    opacity: 0.6;
+  }
+
+  .hero-tag-services {
+    left: 0px;
+    top: 480px;
+  }
+
+  .hero-tag-lawyer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0;
+
+    right: 80px;
+    top: 380px;
+  }
+
+  .tag-images {
+    display: flex;
+  }
+
+  .tag-images :global(img) {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(246, 241, 232, 0.3);
+  }
+
+  .tag-images :global(img:not(:first-child)) {
+    margin-left: -15px;
+  }
+
+  .hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    color: var(--color-background);
+  }
+
+  .hero-pills {
+    width: 380px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .hero-pills span {
+    display: flex;
+    align-items: center;
+    padding-inline: 32px;
+    height: 40px;
+
+    border: 1px solid rgba(246, 241, 232, 0.5);
+    border-radius: 999px;
+
+    background: rgba(246, 241, 232, 0.25);
+
+    font-size: 14px;
+  }
+
+  .hero-bottom a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 14px;
+  }
+
+  .hero-bottom a span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgba(246, 241, 232, 0.5);
+    border-radius: 999;
+  }
+
+  @media (max-width: 900px) {
+    .hero,
+    .hero-inner {
+      min-height: 720px;
+    }
+
+    .hero-copy {
+      display: none;
+    }
+
+    .hero h1 {
+      top: 130px;
+      white-space: normal;
+      font-size: clamp(58px, 13vw, 90px);
+    }
+
+    .hero-lawyer :global(img) {
+      width: 420px;
+    }
+
+    .hero-tag-services {
+      left: 24px;
+      top: 360px;
+    }
+
+    .hero-tag-location {
+      right: 24px;
+      top: 430px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero,
+    .hero-inner {
+      min-height: 680px;
+    }
+
+    .hero h1 {
+      top: 110px;
+      font-size: 58px;
+      line-height: 0.95;
+    }
+
+    .hero-lawyer :global(img) {
+      width: 340px;
+    }
+
+    .hero-tag {
+      transform: scale(0.92);
+    }
+
+    .hero-tag-services {
+      left: 8px;
+      top: 330px;
+    }
+
+    .hero-tag-location {
+      right: 8px;
+      top: 410px;
+    }
+
+    .hero-bottom {
+      align-items: flex-end;
+    }
+
+    .hero-pills {
+      max-width: 75%;
+    }
+  }
+</style>
