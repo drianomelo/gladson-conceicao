@@ -1,5 +1,7 @@
 ---
 import logoGladson from "../assets/icons/logo-white.svg";
+import heroBg from "../assets/images/hero-bg.webp";
+import iconCheck from "../assets/icons/check.svg";
 ---
 
 <section class="main-services" id="servicos" aria-labelledby="services-title">
@@ -48,9 +50,42 @@ import logoGladson from "../assets/icons/logo-white.svg";
       </div>
 
       <div class="services-display">
-        <div class="services-display-header">Condução segura do inventário</div>
-        <div class="services-display-footer"></div>
-        <div class="services-display-tag"></div>
+        <div class="services-display-header">
+          <p>Condução segura do inventário</p>
+          <img src={heroBg.src} alt="" width="592" height="444" />
+          <div class="services-overlay"></div>
+        </div>
+        <div class="services-display-footer">
+          <p>
+            Atuação em inventários, com orientação jurídica para regularização e
+            partilha do patrimônio após o falecimento, buscando condução clara,
+            segura e responsável em cada etapa.
+          </p>
+          <a href="">Entre em contato</a>
+        </div>
+        <div class="services-display-tag">
+          <p>Inventários</p>
+          <ul>
+            <li>
+              <span>
+                <img src={iconCheck.src} alt="" width="8" height="5" />
+              </span>
+              Regularização
+            </li>
+            <li>
+              <span>
+                <img src={iconCheck.src} alt="" width="8" height="5" />
+              </span>
+              Partilha
+            </li>
+            <li>
+              <span>
+                <img src={iconCheck.src} alt="" width="8" height="5" />
+              </span>
+              Condução jurídica
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -214,6 +249,117 @@ import logoGladson from "../assets/icons/logo-white.svg";
   }
 
   .services-display {
+    position: relative;
     flex: 1;
+    background-color: var(--color-primary-alt);
+    border-radius: 28px;
+  }
+
+  .services-display-header {
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+    height: 60%;
+    border-radius: 28px;
+    padding: 32px;
+  }
+
+  .services-display-header p {
+    position: relative;
+    margin-right: 100px;
+    z-index: 3;
+
+    font-size: 46px;
+    font-weight: 500;
+    line-height: 46px;
+    color: var(--color-background);
+  }
+
+  .services-display-header img {
+    position: absolute;
+    left: 0;
+    top: -40%;
+  }
+
+  .services-overlay {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+
+    background: linear-gradient(to top, var(--color-primary), transparent);
+  }
+
+  .services-display-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 40%;
+    padding: 32px;
+  }
+
+  .services-display-footer p {
+    width: 65%;
+    color: var(--color-background);
+    font-weight: 300;
+    font-size: 15px;
+    opacity: 50%;
+  }
+
+  .services-display-footer a {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    font-size: 14px;
+    height: 40px;
+    padding-inline: 16px;
+    border-radius: 999;
+  }
+
+  .services-display-tag {
+    position: absolute;
+    z-index: 4;
+    right: 32px;
+    top: 48%;
+    width: 215px;
+    background-color: var(--color-primary);
+    border-radius: 16px;
+    border: 1px solid rgba(246, 241, 232, 0.1);
+    padding-block: 16px;
+    padding-inline: 20px;
+  }
+
+  .services-display-tag p {
+    color: var(--color-background);
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
+
+  .services-display-tag ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    list-style: none;
+    padding-left: 4px;
+  }
+
+  .services-display-tag ul li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(246, 241, 232, 0.5);
+  }
+
+  .services-display-tag ul li span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    background-color: var(--color-accent);
   }
 </style>
