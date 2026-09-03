@@ -2,6 +2,8 @@
 import logoGladson from "../assets/icons/logo-white.svg";
 import heroBg from "../assets/images/hero-bg.webp";
 import iconCheck from "../assets/icons/check.svg";
+
+import { Image } from "astro:assets";
 ---
 
 <section class="main-services" id="servicos" aria-labelledby="services-title">
@@ -23,12 +25,16 @@ import iconCheck from "../assets/icons/check.svg";
 
     <div class="services-content">
       <div class="services-list">
-        <button class="service-item is-active" data-service="planejamento">
+        <button type="button" class="service-item" data-service="planejamento">
           <span>01</span>
           <strong>Planejamento Sucessório</strong>
         </button>
 
-        <button class="service-item" data-service="inventarios">
+        <button
+          type="button"
+          class="service-item is-active"
+          data-service="inventarios"
+        >
           <span>02</span>
           <strong>Inventários</strong>
         </button>
@@ -52,7 +58,13 @@ import iconCheck from "../assets/icons/check.svg";
       <div class="services-display">
         <div class="services-display-header">
           <p>Condução segura do inventário</p>
-          <img src={heroBg.src} alt="" width="592" height="444" />
+          <Image
+            src={heroBg}
+            alt="Documentos relacionados à condução de inventário"
+            width={592}
+            height={444}
+            quality={85}
+          />
           <div class="services-overlay"></div>
         </div>
         <div class="services-display-footer">
@@ -61,7 +73,13 @@ import iconCheck from "../assets/icons/check.svg";
             partilha do patrimônio após o falecimento, buscando condução clara,
             segura e responsável em cada etapa.
           </p>
-          <a href="">Entre em contato</a>
+          <a
+            href="https://wa.me/5579988697480?text=Ol%C3%A1%2C%20Dr.%20Gladson.%20Gostaria%20de%20receber%20orienta%C3%A7%C3%A3o%20sobre%20invent%C3%A1rio."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Entre em contato
+          </a>
         </div>
         <div class="services-display-tag">
           <p>Inventários</p>
@@ -167,7 +185,9 @@ import iconCheck from "../assets/icons/check.svg";
     border-radius: 28px;
 
     cursor: pointer;
-    transition: all 180ms ease;
+    transition:
+      transform 180ms ease,
+      background-color 180ms ease;
   }
 
   .service-item span {
@@ -193,7 +213,7 @@ import iconCheck from "../assets/icons/check.svg";
   }
 
   .service-item:hover {
-    scale: 1.02;
+    transform: scale(1.02);
   }
 
   .services-dots {
@@ -239,7 +259,7 @@ import iconCheck from "../assets/icons/check.svg";
     width: 52px;
 
     background-color: var(--color-text);
-    border-radius: 999;
+    border-radius: 999px;
   }
 
   .services-more a span img {
@@ -314,7 +334,7 @@ import iconCheck from "../assets/icons/check.svg";
     font-size: 14px;
     height: 40px;
     padding-inline: 16px;
-    border-radius: 999;
+    border-radius: 999px;
   }
 
   .services-display-tag {
