@@ -1,0 +1,242 @@
+---
+import { Image } from "astro:assets";
+
+import testamentosImg from "../assets/images/hero-bg.webp";
+import doacaoImg from "../assets/images/hero-bg.webp";
+import consultoriaImg from "../assets/images/hero-bg.webp";
+import analiseImg from "../assets/images/hero-bg.webp";
+import logoGladson from "../assets/icons/logo-gladson-black.png";
+import iconArrow from "../assets/icons/arrow-right.svg";
+
+const services = [
+  {
+    title: "Testamentos",
+    description:
+      "Orientação jurídica para elaboração de testamentos, considerando patrimônio, vontade do titular e segurança na formalização.",
+    image: testamentosImg,
+    alt: "Documento jurídico sendo assinado em escritório",
+    cta: "Falar sobre Testamentos",
+    href: "https://wa.me/5579988697480?text=Ol%C3%A1%2C%20Dr.%20Gladson.%20Gostaria%20de%20receber%20orienta%C3%A7%C3%A3o%20jur%C3%ADdica%20sobre%20testamento.",
+  },
+  {
+    title: "Doação",
+    description:
+      "Orientação jurídica em doações patrimoniais, observando seus efeitos legais e sucessórios com mais clareza e segurança.",
+    image: doacaoImg,
+    alt: "Transferência patrimonial representada por documentos em ambiente profissional",
+    cta: "Falar sobre Doação",
+    href: "https://wa.me/5579988697480?text=Ol%C3%A1%2C%20Dr.%20Gladson.%20Gostaria%20de%20receber%20orienta%C3%A7%C3%A3o%20jur%C3%ADdica%20sobre%20doa%C3%A7%C3%A3o%20de%20bens.",
+  },
+  {
+    title: "Consultoria",
+    description:
+      "Orientação jurídica para esclarecer dúvidas sobre documentos, etapas e caminhos relacionados ao inventário.",
+    image: consultoriaImg,
+    alt: "Reunião de consultoria jurídica sobre inventário",
+    cta: "Tirar dúvidas sobre Inventário",
+    href: "https://wa.me/5579988697480?text=Ol%C3%A1%2C%20Dr.%20Gladson.%20Gostaria%20de%20uma%20consultoria%20sobre%20invent%C3%A1rio.",
+  },
+  {
+    title: "Análise Processual",
+    description:
+      "Avaliação técnica de processos sucessórios, com orientação jurídica clara e estratégica.",
+    image: analiseImg,
+    alt: "Documentos e processo jurídico sendo analisados",
+    cta: "Solicitar Análise Processual",
+    href: "https://wa.me/5579988697480?text=Ol%C3%A1%2C%20Dr.%20Gladson.%20Gostaria%20de%20receber%20orienta%C3%A7%C3%A3o%20sobre%20uma%20an%C3%A1lise%20processual%20relacionada%20a%20uma%20quest%C3%A3o%20sucess%C3%B3ria.",
+  },
+];
+---
+
+<section class="secondary-services" aria-labelledby="secondary-services-title">
+  <div class="container">
+    <div class="secondary-services-header">
+      <span>Outras áreas de atuação</span>
+
+      <div class="secondary-services-title">
+        <h2 id="secondary-services-title">
+          Atuação complementar em questões sucessórias
+        </h2>
+
+        <a href="/areas-de-atuacao">
+          Ver atuação completa
+          <span>
+            <img src={logoGladson.src} alt="" width="24" height="13" />
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div class="secondary-services-grid">
+      {
+        services.map((service) => (
+          <article class="service-card">
+            <div class="service-card-image">
+              <Image
+                src={service.image}
+                alt={service.alt}
+                width={580}
+                height={360}
+                quality={85}
+              />
+            </div>
+
+            <div class="service-card-content">
+              <div>
+                <h3>{service.title}</h3>
+
+                <p>{service.description}</p>
+              </div>
+
+              <a href={service.href} target="_blank" rel="noopener noreferrer">
+                {service.cta}
+                <img src={iconArrow.src} alt="" width="10" height="10" />
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .secondary-services {
+    padding-block: 80px;
+  }
+
+  .secondary-services-header {
+    margin-bottom: 48px;
+  }
+
+  .secondary-services-header > span {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding-inline: 16px;
+    margin-bottom: 24px;
+
+    border-radius: 999px;
+    background: var(--color-white);
+
+    font-size: 14px;
+    color: rgba(28, 28, 28, 0.5);
+  }
+
+  .secondary-services-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 48px;
+  }
+
+  .secondary-services-title h2 {
+    max-width: 760px;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 50px;
+  }
+
+  .secondary-services-title a {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    height: 60px;
+    padding-left: 24px;
+    padding-right: 5px;
+
+    color: var(--color-background);
+    background-color: var(--color-text);
+    border-radius: 999px;
+    font-size: 14px;
+
+    transition: opacity 180ms ease;
+  }
+
+  .secondary-services-title a:hover {
+    opacity: 0.9;
+  }
+
+  .secondary-services-title a span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 52px;
+    width: 52px;
+
+    background-color: var(--color-background);
+    border-radius: 999px;
+  }
+
+  .secondary-services-title a span img {
+    width: 24px;
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  .secondary-services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 16px;
+    padding: 8px;
+    background: var(--color-white);
+  }
+
+  .service-card:hover {
+    flex-direction: column-reverse;
+  }
+
+  .service-card-image {
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
+    margin-bottom: 8px;
+  }
+
+  .service-card-image :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .service-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1%;
+    padding: 16px;
+    border: 1px solid rgba(28, 28, 28, 0.15);
+    border-radius: 12px;
+  }
+
+  .service-card-content h3 {
+    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .service-card-content p {
+    margin-bottom: 24px;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgba(28, 28, 28, 0.6);
+  }
+
+  .service-card-content a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--color-primary-alt);
+
+    font-size: 14px;
+    font-weight: 500;
+  }
+</style>
