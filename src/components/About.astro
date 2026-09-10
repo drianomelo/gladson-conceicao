@@ -67,7 +67,8 @@ import gladsonAbout from "../assets/images/about-gladson.png";
 
 <style>
   .about-gladson {
-    padding-block: 80px;
+    padding-top: 80px;
+    padding-bottom: 120px;
     background: var(--color-primary);
     color: var(--color-background);
     overflow: hidden;
@@ -277,6 +278,7 @@ import gladsonAbout from "../assets/images/about-gladson.png";
     display: flex;
     align-items: center;
     justify-content: space-between;
+    bottom: -55px;
   }
 
   .about-tag {
@@ -290,5 +292,15 @@ import gladsonAbout from "../assets/images/about-gladson.png";
     font-weight: 300;
     text-transform: uppercase;
     color: rgba(246, 241, 232, 0.5);
+  }
+
+  .about-tag.is-active {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-weight: 600;
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 </style>
