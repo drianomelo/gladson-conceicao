@@ -1,0 +1,171 @@
+---
+import iconAngle from "../assets/icons/angle.svg";
+
+const faqs = [
+  {
+    question: "O que é planejamento sucessório?",
+    answer:
+      "O planejamento sucessório é a organização antecipada da transferência do patrimônio para herdeiros ou beneficiários, ainda em vida. Ele permite avaliar a estrutura familiar e patrimonial, definir estratégias adequadas e formalizar decisões com maior clareza e segurança jurídica.",
+  },
+  {
+    question: "Qual a diferença entre planejamento sucessório e inventário?",
+    answer:
+      "O planejamento sucessório é realizado em vida e busca organizar previamente a transmissão do patrimônio. Já o inventário ocorre após o falecimento e tem como objetivo identificar, regularizar e realizar a partilha dos bens deixados.",
+  },
+  {
+    question: "O inventário pode ser feito em cartório?",
+    answer:
+      "Sim, em determinadas situações o inventário pode ser realizado de forma extrajudicial, diretamente em cartório, desde que sejam atendidos os requisitos legais aplicáveis ao caso.",
+  },
+  {
+    question: "É possível fazer inventário à distância?",
+    answer:
+      "Sim. Dependendo das características do caso, grande parte das orientações, envio de documentos e acompanhamento pode ser realizada de forma remota, permitindo atendimento mesmo quando os envolvidos estão em outras cidades ou estados.",
+  },
+  {
+    question:
+      "Quais documentos costumam ser necessários para iniciar um inventário?",
+    answer:
+      "Normalmente são necessários documentos pessoais dos envolvidos, certidão de óbito e documentos relacionados aos bens e direitos deixados. A documentação exata pode variar conforme o patrimônio e as particularidades de cada inventário.",
+  },
+  {
+    question: "Quem pode fazer um planejamento sucessório?",
+    answer:
+      "O planejamento sucessório pode ser considerado por quem deseja organizar antecipadamente a transmissão de seu patrimônio, definir disposições relacionadas aos seus bens e proporcionar maior previsibilidade à sucessão.",
+  },
+  {
+    question: "Quando é indicado procurar orientação jurídica?",
+    answer:
+      "A orientação jurídica pode ser buscada tanto para organizar o patrimônio ainda em vida quanto após o falecimento, especialmente quando existem dúvidas sobre inventário, partilha, herdeiros, testamentos, doações ou outros aspectos sucessórios.",
+  },
+];
+---
+
+<section class="faq" aria-labelledby="faq-title">
+  <div class="container faq-layout">
+    <div class="faq-header">
+      <span>Dúvidas frequentes</span>
+
+      <h2 id="faq-title">
+        Informações importantes sobre inventários e planejamento sucessório
+      </h2>
+
+      <p>
+        Respostas objetivas para algumas das principais dúvidas sobre
+        organização patrimonial, sucessão e inventário.
+      </p>
+    </div>
+
+    <div class="faq-list">
+      {
+        faqs.map((faq, index) => (
+          <button class={`faq-item ${index === 0 ? "is-active" : ""}`}>
+            <div class="faq-question">
+              <h3>{faq.question}</h3>
+
+              <img src={iconAngle.src} alt="" width="10" height="10" />
+            </div>
+
+            {index === 0 && (
+              <div class="faq-answer">
+                <p>{faq.answer}</p>
+              </div>
+            )}
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    padding-block: 80px;
+  }
+
+  .faq-layout {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .faq-header {
+    max-width: 490px;
+  }
+
+  .faq-header > span {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding-inline: 16px;
+    margin-bottom: 24px;
+
+    border-radius: 999px;
+    background: var(--color-white);
+
+    font-size: 14px;
+    color: rgba(28, 28, 28, 0.5);
+  }
+
+  #faq-title {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 44px;
+    margin-bottom: 24px;
+  }
+
+  .faq-header > p {
+    opacity: 50%;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 590px;
+  }
+
+  .faq-item {
+    background-color: var(--color-background);
+    border: 1px solid rgba(28, 28, 28, 0.2);
+    border-radius: 16px;
+    padding: 32px;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+  }
+
+  .faq-question h3 {
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 700;
+    text-align: start;
+    line-height: 20px;
+  }
+
+  .faq-answer > p {
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    text-align: start;
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .faq-item.is-active {
+    background-color: var(--color-white);
+  }
+
+  .faq-item.is-active > .faq-question > img {
+    transform: rotate(180deg);
+  }
+
+  .faq-item.is-active > .faq-answer {
+    margin-top: 20px;
+  }
+</style>
