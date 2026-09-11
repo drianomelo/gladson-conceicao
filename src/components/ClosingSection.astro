@@ -1,6 +1,7 @@
 ---
 import columnImg from "../assets/images/footer-column.png";
 import logoGladson from "../assets/icons/logo-white.svg";
+import { Image } from "astro:assets";
 
 const currentYear = new Date().getFullYear();
 
@@ -13,6 +14,10 @@ const navItems = [
 ---
 
 <section class="closing" id="contato" aria-labelledby="closing-title">
+  <h2 id="closing-title" class="sr-only">
+    Entre em contato com Gladson Conceição
+  </h2>
+
   <div class="container closing-inner">
     <div class="closing-top">
       <div class="closing-heading">
@@ -58,7 +63,15 @@ const navItems = [
   </div>
 
   <div class="closing-visual container" aria-hidden="true">
-    <img src={columnImg.src} alt="" />
+    <Image
+      src={columnImg}
+      alt=""
+      aria-hidden="true"
+      width={340}
+      quality={80}
+      format="webp"
+      loading="lazy"
+    />
   </div>
 
   <footer class="footer">
@@ -74,7 +87,9 @@ const navItems = [
           reservados.
         </span>
 
-        <span>Desenvolvido por <a href="#">Adriano Melo</a> </span>
+        <span
+          >Desenvolvido por <a href="https://melodigital.com">Adriano Melo</a>
+        </span>
       </div>
     </div>
   </footer>
@@ -159,11 +174,11 @@ const navItems = [
     position: relative;
   }
 
-  .closing-visual img {
+  .closing-visual :global(img) {
     position: absolute;
     width: 340px;
     height: auto;
-    opacity: 15%;
+    opacity: 0.15;
 
     right: 280px;
     top: -190px;
