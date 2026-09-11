@@ -1,0 +1,210 @@
+---
+import columnImg from "../assets/images/footer-column.png";
+import logoGladson from "../assets/icons/logo-white.svg";
+
+const currentYear = new Date().getFullYear();
+
+const navItems = [
+  { label: "Início", href: "#inicio" },
+  { label: "Serviços", href: "#servicos" },
+  { label: "Sobre", href: "#sobre" },
+  { label: "FAQ", href: "#faq" },
+];
+---
+
+<section class="closing" id="contato" aria-labelledby="closing-title">
+  <div class="container closing-inner">
+    <div class="closing-top">
+      <div class="closing-heading">
+        <img src={logoGladson.src} alt="" width="220" height="146" />
+
+        <div>
+          <p>
+            Orientação jurídica em
+            <span> inventários, planejamento sucessório </span> e demais questões
+            patrimoniais, com atendimento em
+            <span> Sergipe </span> e em <span>todo o Brasil</span>.
+          </p>
+          <p>
+            <span>Entre em contato</span> para esclarecer sua situação e entender
+            os <span>caminhos jurídicos possíveis</span> para o seu caso.
+          </p>
+        </div>
+      </div>
+
+      <div class="closing-contact">
+        <div class="contact-list">
+          <a href="tel:+5579988697480">
+            <span>Telefone</span>
+            <strong>(79) 98869-7480</strong>
+          </a>
+
+          <a href="mailto:gladsonconceicao_santos@hotmail.com">
+            <span>E-mail</span>
+            <strong>gladsonconceicao_santos@hotmail.com</strong>
+          </a>
+
+          <a
+            href="https://instagram.com/gladsonconceicao"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>Instagram</span>
+            <strong>@gladsonconceicao</strong>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <nav aria-label="Navegação do rodapé">
+        {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+      </nav>
+
+      <div class="footer-bottom">
+        <span>
+          © {currentYear}
+          <strong> Gladson Conceição dos Santos</strong>. Todos os direitos
+          reservados.
+        </span>
+
+        <span>Desenvolvido por <a href="#">Adriano Melo</a> </span>
+      </div>
+    </div>
+  </footer>
+</section>
+
+<style>
+  .closing {
+    position: relative;
+    overflow: hidden;
+
+    background: var(--color-primary);
+    color: var(--color-background);
+  }
+
+  .closing-inner {
+    position: relative;
+  }
+
+  .closing-top {
+    padding-top: 40px;
+    padding-bottom: 32px;
+  }
+
+  .closing-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .closing-heading img {
+    flex-shrink: 0;
+    height: auto;
+    opacity: 80%;
+  }
+
+  .closing-heading > div {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 590px;
+  }
+
+  .closing-heading > div > p {
+    font-size: 20px;
+    font-weight: 300;
+  }
+
+  .closing-heading > div > p > span {
+    opacity: 50%;
+  }
+
+  .closing-contact {
+    padding-top: 40px;
+  }
+
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contact-list a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 300;
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid rgba(246, 241, 232, 0.15);
+  }
+
+  .contact-list span {
+    color: rgba(246, 241, 232, 0.45);
+  }
+
+  .contact-list strong {
+    font-weight: 500;
+  }
+
+  /* .closing-visual {
+    display: flex;
+    justify-content: center;
+
+    height: 300px;
+    overflow: hidden;
+  }
+
+  .closing-visual img {
+    width: 420px;
+    height: auto;
+    object-fit: contain;
+    object-position: top center;
+  } */
+
+  .footer {
+    position: relative;
+    z-index: 2;
+  }
+
+  .footer nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+
+  .footer nav a {
+    font-weight: 300;
+    color: rgba(246, 241, 232, 0.5);
+  }
+
+  .footer nav a:hover {
+    color: rgba(246, 241, 232, 1);
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+
+    padding-block: 16px;
+
+    font-size: 11px;
+    border-top: 1px solid rgba(246, 241, 232, 0.1);
+  }
+
+  .footer-bottom span {
+    color: rgba(246, 241, 232, 0.35);
+  }
+
+  .footer-bottom span strong, .footer-bottom span a {
+    color: rgba(246, 241, 232, .8);
+
+    font-weight: 300;
+  }
+</style>
