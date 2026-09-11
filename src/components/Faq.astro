@@ -59,19 +59,23 @@ const faqs = [
     <div class="faq-list">
       {
         faqs.map((faq, index) => (
-          <button class={`faq-item ${index === 0 ? "is-active" : ""}`}>
-            <div class="faq-question">
-              <h3>{faq.question}</h3>
+          <details class="faq-item" open={index === 0}>
+            <summary class="faq-question">
+              <span>{faq.question}</span>
 
-              <img src={iconAngle.src} alt="" width="10" height="10" />
+              <img
+                src={iconAngle.src}
+                alt=""
+                aria-hidden="true"
+                width="10"
+                height="10"
+              />
+            </summary>
+
+            <div class="faq-answer">
+              <p>{faq.answer}</p>
             </div>
-
-            {index === 0 && (
-              <div class="faq-answer">
-                <p>{faq.answer}</p>
-              </div>
-            )}
-          </button>
+          </details>
         ))
       }
     </div>
@@ -130,7 +134,6 @@ const faqs = [
     border-radius: 16px;
     padding: 32px;
     width: 100%;
-    cursor: pointer;
   }
 
   .faq-question {
@@ -138,34 +141,61 @@ const faqs = [
     align-items: center;
     justify-content: space-between;
     gap: 80px;
+
+    cursor: pointer;
+    list-style: none;
   }
 
-  .faq-question h3 {
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question > span {
     color: var(--color-text);
-    font-family: var(--font-sans);
     font-size: 18px;
     font-weight: 700;
-    text-align: start;
+    text-align: left;
     line-height: 20px;
   }
 
+  .faq-question img {
+    flex-shrink: 0;
+    transition: transform 250ms ease;
+  }
+
+  .faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+
+    opacity: 0;
+
+    transition:
+      grid-template-rows 300ms ease,
+      opacity 250ms ease,
+      margin-top 300ms ease;
+  }
+
   .faq-answer > p {
+    overflow: hidden;
+
     color: var(--color-text);
-    font-family: var(--font-sans);
-    text-align: start;
+    text-align: left;
     font-size: 14px;
+    line-height: 1.5;
     font-weight: 300;
   }
 
-  .faq-item.is-active {
+  .faq-item[open] {
     background-color: var(--color-white);
   }
 
-  .faq-item.is-active > .faq-question > img {
+  .faq-item[open] .faq-question img {
     transform: rotate(180deg);
   }
 
-  .faq-item.is-active > .faq-answer {
+  .faq-item[open] .faq-answer {
+    grid-template-rows: 1fr;
     margin-top: 20px;
+    opacity: 1;
   }
 </style>
