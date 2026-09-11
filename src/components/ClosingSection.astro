@@ -57,6 +57,10 @@ const navItems = [
     </div>
   </div>
 
+  <div class="closing-visual container" aria-hidden="true">
+    <img src={columnImg.src} alt="" />
+  </div>
+
   <footer class="footer">
     <div class="container">
       <nav aria-label="Navegação do rodapé">
@@ -151,20 +155,19 @@ const navItems = [
     font-weight: 500;
   }
 
-  /* .closing-visual {
-    display: flex;
-    justify-content: center;
-
-    height: 300px;
-    overflow: hidden;
+  .closing-visual {
+    position: relative;
   }
 
   .closing-visual img {
-    width: 420px;
+    position: absolute;
+    width: 340px;
     height: auto;
-    object-fit: contain;
-    object-position: top center;
-  } */
+    opacity: 15%;
+
+    right: 280px;
+    top: -190px;
+  }
 
   .footer {
     position: relative;
@@ -202,8 +205,9 @@ const navItems = [
     color: rgba(246, 241, 232, 0.35);
   }
 
-  .footer-bottom span strong, .footer-bottom span a {
-    color: rgba(246, 241, 232, .8);
+  .footer-bottom span strong,
+  .footer-bottom span a {
+    color: rgba(246, 241, 232, 0.8);
 
     font-weight: 300;
   }
