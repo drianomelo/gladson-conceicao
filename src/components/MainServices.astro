@@ -25,19 +25,34 @@ import { Image } from "astro:assets";
 
     <div class="services-content">
       <div class="services-list">
-        <button type="button" class="service-item" data-service="planejamento">
-          <span>01</span>
-          <strong>Planejamento Sucessório</strong>
-        </button>
+        <div class="services-tabs" role="tablist" aria-label="Áreas principais">
+          <button
+            type="button"
+            class="service-item"
+            id="service-tab-planejamento"
+            data-service="planejamento"
+            role="tab"
+            aria-controls="service-panel"
+            aria-selected="false"
+            tabindex="-1"
+          >
+            <span>01</span>
+            <strong>Planejamento Sucessório</strong>
+          </button>
 
-        <button
-          type="button"
-          class="service-item is-active"
-          data-service="inventarios"
-        >
-          <span>02</span>
-          <strong>Inventários</strong>
-        </button>
+          <button
+            type="button"
+            class="service-item is-active"
+            id="service-tab-inventarios"
+            data-service="inventarios"
+            role="tab"
+            aria-controls="service-panel"
+            aria-selected="true"
+          >
+            <span>02</span>
+            <strong>Inventários</strong>
+          </button>
+        </div>
 
         <div class="services-dots">
           <span></span>
@@ -55,12 +70,18 @@ import { Image } from "astro:assets";
         </div>
       </div>
 
-      <div class="services-display">
+      <div
+        class="services-display"
+        id="service-panel"
+        role="tabpanel"
+        aria-labelledby="service-tab-inventarios"
+      >
         <div class="services-display-header">
-          <p>Condução segura do inventário</p>
+          <p data-service-heading>Condução segura do inventário</p>
           <Image
             src={heroBg}
             alt="Documentos relacionados à condução de inventário"
+            data-service-image
             width={592}
             height={444}
             quality={85}
@@ -68,7 +89,7 @@ import { Image } from "astro:assets";
           <div class="services-overlay"></div>
         </div>
         <div class="services-display-footer">
-          <p>
+          <p data-service-description>
             Atuação em inventários, com orientação jurídica para regularização e
             partilha do patrimônio após o falecimento, buscando condução clara,
             segura e responsável em cada etapa.
@@ -77,30 +98,31 @@ import { Image } from "astro:assets";
             href="https://wa.me/5579988697480?text=Ol%C3%A1%2C%20Dr.%20Gladson.%20Gostaria%20de%20receber%20orienta%C3%A7%C3%A3o%20sobre%20invent%C3%A1rio."
             target="_blank"
             rel="noopener noreferrer"
+            data-service-contact
           >
             Entre em contato
           </a>
         </div>
         <div class="services-display-tag">
-          <p>Inventários</p>
+          <p data-service-title>Inventários</p>
           <ul>
             <li>
-              <span>
+              <span class="benefit-check">
                 <img src={iconCheck.src} alt="" width="8" height="5" />
               </span>
-              Regularização
+              <span data-service-benefit>Regularização</span>
             </li>
             <li>
-              <span>
+              <span class="benefit-check">
                 <img src={iconCheck.src} alt="" width="8" height="5" />
               </span>
-              Partilha
+              <span data-service-benefit>Partilha</span>
             </li>
             <li>
-              <span>
+              <span class="benefit-check">
                 <img src={iconCheck.src} alt="" width="8" height="5" />
               </span>
-              Condução jurídica
+              <span data-service-benefit>Condução jurídica</span>
             </li>
           </ul>
         </div>
@@ -169,6 +191,13 @@ import { Image } from "astro:assets";
     gap: 16px;
   }
 
+  .services-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
   .service-item {
     display: flex;
     align-items: flex-end;
@@ -205,6 +234,11 @@ import { Image } from "astro:assets";
     color: var(--color-background);
     opacity: 40%;
     font-weight: 400;
+    transition: opacity 180ms ease;
+  }
+
+  .service-item span {
+    transition: opacity 180ms ease;
   }
 
   .service-item.is-active span,
@@ -212,8 +246,14 @@ import { Image } from "astro:assets";
     opacity: 1;
   }
 
-  .service-item:hover {
+  .service-item:hover,
+  .service-item:focus-visible {
     transform: scale(1.02);
+  }
+
+  .service-item:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
   }
 
   .services-dots {
@@ -244,7 +284,7 @@ import { Image } from "astro:assets";
     border-radius: 999px;
     font-size: 14px;
 
-    transition: all 180ms ease;
+    transition: background-color 180ms ease;
   }
 
   .services-more a:hover {
@@ -335,6 +375,15 @@ import { Image } from "astro:assets";
     height: 40px;
     padding-inline: 16px;
     border-radius: 999px;
+    transition:
+      background-color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .services-display-footer a:hover,
+  .services-display-footer a:focus-visible {
+    background-color: #b99a70;
+    transform: translateY(-2px);
   }
 
   .services-display-tag {
@@ -373,7 +422,7 @@ import { Image } from "astro:assets";
     color: rgba(246, 241, 232, 0.5);
   }
 
-  .services-display-tag ul li span {
+  .services-display-tag .benefit-check {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -412,6 +461,12 @@ import { Image } from "astro:assets";
 
     .services-list {
       display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .services-tabs {
+      display: grid;
+      grid-column: 1 / -1;
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
@@ -463,6 +518,10 @@ import { Image } from "astro:assets";
     }
 
     .services-list {
+      grid-template-columns: 1fr;
+    }
+
+    .services-tabs {
       grid-template-columns: 1fr;
     }
 
@@ -523,3 +582,118 @@ import { Image } from "astro:assets";
     }
   }
 </style>
+
+<script>
+  interface ServiceContent {
+    heading: string;
+    description: string;
+    title: string;
+    benefits: [string, string, string];
+    href: string;
+    imageAlt: string;
+  }
+
+  const serviceContent: Record<string, ServiceContent> = {
+    planejamento: {
+      heading: "Organização estratégica do patrimônio",
+      description:
+        "Planejamento sucessório realizado em vida, com orientação jurídica para estruturar a transmissão do patrimônio, formalizar decisões e reduzir riscos de conflitos futuros.",
+      title: "Planejamento Sucessório",
+      benefits: [
+        "Organização patrimonial",
+        "Prevenção de conflitos",
+        "Segurança jurídica",
+      ],
+      href: "https://wa.me/5579988697480?text=Ol%C3%A1%2C%20Dr.%20Gladson.%20Gostaria%20de%20receber%20orienta%C3%A7%C3%A3o%20sobre%20planejamento%20sucess%C3%B3rio.",
+      imageAlt: "Documentos relacionados ao planejamento sucessório",
+    },
+    inventarios: {
+      heading: "Condução segura do inventário",
+      description:
+        "Atuação em inventários, com orientação jurídica para regularização e partilha do patrimônio após o falecimento, buscando condução clara, segura e responsável em cada etapa.",
+      title: "Inventários",
+      benefits: ["Regularização", "Partilha", "Condução jurídica"],
+      href: "https://wa.me/5579988697480?text=Ol%C3%A1%2C%20Dr.%20Gladson.%20Gostaria%20de%20receber%20orienta%C3%A7%C3%A3o%20sobre%20invent%C3%A1rio.",
+      imageAlt: "Documentos relacionados à condução de inventário",
+    },
+  };
+
+  document.querySelectorAll<HTMLElement>(".main-services").forEach((root) => {
+    const tabs = Array.from(
+      root.querySelectorAll<HTMLButtonElement>("[data-service]"),
+    );
+    const panel = root.querySelector<HTMLElement>("[role='tabpanel']");
+    const heading = root.querySelector<HTMLElement>("[data-service-heading]");
+    const description = root.querySelector<HTMLElement>(
+      "[data-service-description]",
+    );
+    const title = root.querySelector<HTMLElement>("[data-service-title]");
+    const benefits = Array.from(
+      root.querySelectorAll<HTMLElement>("[data-service-benefit]"),
+    );
+    const contact = root.querySelector<HTMLAnchorElement>(
+      "[data-service-contact]",
+    );
+    const image = root.querySelector<HTMLImageElement>("[data-service-image]");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let panelAnimation: Animation | undefined;
+
+    const activate = (tab: HTMLButtonElement) => {
+      const content = serviceContent[tab.dataset.service ?? ""];
+      if (!content || tab.getAttribute("aria-selected") === "true") return;
+
+      tabs.forEach((item) => {
+        const isActive = item === tab;
+        item.classList.toggle("is-active", isActive);
+        item.setAttribute("aria-selected", String(isActive));
+        item.tabIndex = isActive ? 0 : -1;
+      });
+
+      if (panel) panel.setAttribute("aria-labelledby", tab.id);
+      if (heading) heading.textContent = content.heading;
+      if (description) description.textContent = content.description;
+      if (title) title.textContent = content.title;
+      if (contact) contact.href = content.href;
+      if (image) image.alt = content.imageAlt;
+      benefits.forEach((item, index) => {
+        item.textContent = content.benefits[index] ?? "";
+      });
+
+      if (panel && !reduceMotion.matches) {
+        panelAnimation?.cancel();
+        panelAnimation = panel.animate(
+          [
+            { opacity: 0.65, transform: "translateY(8px)" },
+            { opacity: 1, transform: "translateY(0)" },
+          ],
+          { duration: 260, easing: "cubic-bezier(.2,.8,.2,1)" },
+        );
+      }
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => activate(tab));
+      tab.addEventListener("keydown", (event) => {
+        let targetIndex = index;
+        if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+          targetIndex = (index + 1) % tabs.length;
+        } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+          targetIndex = (index - 1 + tabs.length) % tabs.length;
+        } else if (event.key === "Home") {
+          targetIndex = 0;
+        } else if (event.key === "End") {
+          targetIndex = tabs.length - 1;
+        } else {
+          return;
+        }
+
+        event.preventDefault();
+        const targetTab = tabs[targetIndex];
+        if (targetTab) {
+          targetTab.focus();
+          activate(targetTab);
+        }
+      });
+    });
+  });
+</script>

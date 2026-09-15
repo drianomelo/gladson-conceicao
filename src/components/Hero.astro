@@ -253,6 +253,44 @@ import documento from "../assets/images/hero-tag-3.webp";
     margin-left: -15px;
   }
 
+  @media (prefers-reduced-motion: no-preference) {
+    .hero.is-motion-active .hero-tag-services {
+      animation: hero-tag-services-sway 7.2s ease-in-out 900ms infinite;
+      will-change: transform;
+    }
+
+    .hero.is-motion-active .hero-tag-lawyer {
+      animation: hero-tag-lawyer-sway 6.6s ease-in-out 350ms infinite;
+      will-change: transform;
+    }
+
+    @keyframes hero-tag-services-sway {
+      0%,
+      100% {
+        translate: 0 0;
+        rotate: -0.5deg;
+      }
+
+      50% {
+        translate: 3px -5px;
+        rotate: 0.7deg;
+      }
+    }
+
+    @keyframes hero-tag-lawyer-sway {
+      0%,
+      100% {
+        translate: 0 0;
+        rotate: 0.45deg;
+      }
+
+      50% {
+        translate: -3px -4px;
+        rotate: -0.65deg;
+      }
+    }
+  }
+
   .hero-bottom {
     display: flex;
     justify-content: space-between;

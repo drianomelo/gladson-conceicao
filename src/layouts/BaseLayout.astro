@@ -8,8 +8,29 @@ interface Props {
 
 const {
   title,
-  description = "Advocacia com atuação em Direito Sucessório, Inventários e Planejamento Sucessório."
+  description = "Advocacia com atuação em Direito Sucessório, Inventários e Planejamento Sucessório.",
 } = Astro.props;
+
+const legalServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  name: "Gladson Conceição dos Santos",
+  description,
+  telephone: "+55 79 98869-7480",
+  email: "gladsonconceicao_santos@hotmail.com",
+  areaServed: [
+    { "@type": "State", name: "Sergipe" },
+    { "@type": "Country", name: "Brasil" },
+  ],
+  knowsAbout: [
+    "Direito Sucessório",
+    "Inventários",
+    "Planejamento Sucessório",
+    "Testamentos",
+    "Doações",
+  ],
+  sameAs: ["https://www.instagram.com/gladsonconceicao/"],
+};
 ---
 
 <!doctype html>
@@ -20,9 +41,188 @@ const {
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1"
+    />
+    <meta name="theme-color" content="#102a24" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Gladson Conceição" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(legalServiceSchema)}
+    />
   </head>
 
   <body>
     <slot />
+
+    <script>
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      );
+
+      if (!reducedMotion.matches) {
+        const revealGroups = [
+          {
+            selector:
+              ".site-header .brand, .site-header .nav-list, .site-header .header-contact",
+            direction: "down",
+            stagger: 50,
+          },
+          {
+            selector:
+              ".hero h1, .hero-copy-left, .hero-copy-right, .hero-lawyer, .hero-pills, .hero-bottom > a",
+            direction: "up",
+            stagger: 60,
+          },
+          {
+            selector: ".positioning h2, .positioning-description",
+            direction: "up",
+            stagger: 75,
+          },
+          {
+            selector:
+              ".services-header > span, .services-title h2, .services-title p, .service-item, .services-dots, .services-more, .services-display",
+            direction: "up",
+            stagger: 50,
+          },
+          {
+            selector:
+              ".secondary-services-header > span, .secondary-services-title h2, .secondary-services-title > a, .service-card",
+            direction: "up",
+            stagger: 55,
+          },
+          {
+            selector:
+              ".about-gladson > img, .about-left > span, .about-left > h2, .about-left > p, .about-left li, .about-right, .about-tags",
+            direction: "up",
+            stagger: 50,
+          },
+          {
+            selector:
+              ".attendance-label, .attendance-content h2, .attendance-content > p, .attendance-content > a",
+            direction: "right",
+            stagger: 55,
+          },
+          {
+            selector: ".attendance-map",
+            direction: "scale",
+            stagger: 0,
+          },
+          {
+            selector: ".attendance-info > div",
+            direction: "left",
+            stagger: 55,
+          },
+          {
+            selector:
+              ".faq-header > span, .faq-header > h2, .faq-header > p, .faq-item",
+            direction: "up",
+            stagger: 45,
+          },
+          {
+            selector:
+              ".closing-heading > img, .closing-heading > div > p, .contact-list > a, .closing-visual img, .footer nav, .footer-bottom",
+            direction: "up",
+            stagger: 50,
+          },
+        ] as const;
+
+        const revealElements: HTMLElement[] = [];
+
+        revealGroups.forEach(({ selector, direction, stagger }) => {
+          document
+            .querySelectorAll<HTMLElement>(selector)
+            .forEach((element, index) => {
+              if (element.dataset.reveal) return;
+
+              element.dataset.reveal = direction;
+              element.style.setProperty(
+                "--reveal-delay",
+                `${Math.min(index * stagger, 200)}ms`,
+              );
+              revealElements.push(element);
+            });
+        });
+
+        document.addEventListener("animationend", (event) => {
+          if (
+            event.animationName !== "reveal-in" ||
+            !(event.target instanceof HTMLElement) ||
+            !event.target.dataset.reveal
+          ) {
+            return;
+          }
+
+          event.target.classList.remove("is-revealed");
+          event.target.classList.add("is-reveal-visible");
+        });
+
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                const element = entry.target as HTMLElement;
+
+                if (entry.isIntersecting) {
+                  if (
+                    !element.classList.contains("is-revealed") &&
+                    !element.classList.contains("is-reveal-visible")
+                  ) {
+                    element.classList.add("is-revealed");
+                  }
+                  return;
+                }
+
+                element.classList.remove("is-revealed", "is-reveal-visible");
+              });
+            },
+            {
+              rootMargin: "0px 0px -8% 0px",
+              threshold: 0.08,
+            },
+          );
+
+          revealElements.forEach((element) => observer.observe(element));
+
+          const hero = document.querySelector<HTMLElement>(".hero");
+
+          if (hero) {
+            const heroMotionObserver = new IntersectionObserver(
+              ([entry]) => {
+                hero.classList.toggle(
+                  "is-motion-active",
+                  entry?.isIntersecting ?? false,
+                );
+              },
+              { rootMargin: "120px 0px" },
+            );
+
+            heroMotionObserver.observe(hero);
+          }
+        } else {
+          revealElements.forEach((element) => {
+            element.removeAttribute("data-reveal");
+            element.style.removeProperty("--reveal-delay");
+          });
+
+          document.querySelector(".hero")?.classList.add("is-motion-active");
+        }
+      }
+    </script>
   </body>
 </html>

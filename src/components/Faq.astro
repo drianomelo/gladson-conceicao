@@ -41,7 +41,7 @@ const faqs = [
 ];
 ---
 
-<section class="faq" aria-labelledby="faq-title">
+<section class="faq" id="faq" aria-labelledby="faq-title">
   <div class="container faq-layout">
     <div class="faq-header">
       <span>Dúvidas frequentes</span>
@@ -59,7 +59,11 @@ const faqs = [
     <div class="faq-list">
       {
         faqs.map((faq, index) => (
-          <details class="faq-item" open={index === 0}>
+          <details
+            class="faq-item"
+            name="frequent-questions"
+            open={index === 0}
+          >
             <summary class="faq-question">
               <span>{faq.question}</span>
 
@@ -118,7 +122,7 @@ const faqs = [
   }
 
   .faq-header > p {
-    opacity: 50%;
+    color: rgba(28, 28, 28, 0.68);
   }
 
   .faq-list {

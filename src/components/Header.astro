@@ -1,5 +1,5 @@
 ---
-import logoGladson from "../assets/icons/logo-gladson-black.png";
+import logoGladson from "../assets/icons/logo-gladson-black-hd.png";
 import arrowIcon from "../assets/icons/arrow-up-right.svg";
 
 const navItems = [
@@ -32,7 +32,13 @@ const navItems = [
         {
           navItems.map((item) => (
             <li>
-              <a href={item.href}>{item.label}</a>
+              <a
+                href={item.href}
+                data-nav-link
+                aria-current={item.href === "#inicio" ? "location" : undefined}
+              >
+                {item.label}
+              </a>
             </li>
           ))
         }
@@ -44,7 +50,7 @@ const navItems = [
 
       <a
         class="contact-button"
-        href="https://wa.me/5579988697480"
+        href="https://wa.me/5579988697480?text=Ol%C3%A1%2C%20Dr.%20Gladson.%20Gostaria%20de%20conversar%20sobre%20uma%20quest%C3%A3o%20relacionada%20ao%20Direito%20Sucess%C3%B3rio."
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -67,7 +73,17 @@ const navItems = [
         </summary>
 
         <nav aria-label="Navegação para dispositivos móveis">
-          {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+          {
+            navItems.map((item) => (
+              <a
+                href={item.href}
+                data-nav-link
+                aria-current={item.href === "#inicio" ? "location" : undefined}
+              >
+                {item.label}
+              </a>
+            ))
+          }
         </nav>
       </details>
     </div>
@@ -76,8 +92,13 @@ const navItems = [
 
 <style>
   .site-header {
+    position: sticky;
+    z-index: 50;
+    top: 0;
     padding-block: 16px;
     padding-inline: 24px;
+    border-bottom: 1px solid rgba(28, 28, 28, 0.08);
+    background: var(--color-background);
   }
 
   .header-inner {
@@ -130,7 +151,7 @@ const navItems = [
     position: relative;
     font-size: 16px;
     font-weight: 300;
-    opacity: 60%;
+    opacity: 68%;
     transition:
       opacity 180ms ease,
       background-color 180ms ease;
@@ -147,12 +168,14 @@ const navItems = [
   }
 
   .nav-list a:hover,
-  .nav-list a:focus-visible {
+  .nav-list a:focus-visible,
+  .nav-list a[aria-current="location"] {
     opacity: 100%;
   }
 
   .nav-list a:hover::after,
-  .nav-list a:focus-visible::after {
+  .nav-list a:focus-visible::after,
+  .nav-list a[aria-current="location"]::after {
     width: 110%;
   }
 
@@ -306,7 +329,8 @@ const navItems = [
     }
 
     .mobile-nav nav a:hover,
-    .mobile-nav nav a:focus-visible {
+    .mobile-nav nav a:focus-visible,
+    .mobile-nav nav a[aria-current="location"] {
       background: var(--color-white);
     }
   }
@@ -354,3 +378,69 @@ const navItems = [
     }
   }
 </style>
+
+<script>
+  const header = document.querySelector<HTMLElement>(".site-header");
+
+  if (header) {
+    const links = Array.from(
+      header.querySelectorAll<HTMLAnchorElement>("[data-nav-link]"),
+    );
+    const validIds = new Set(
+      links.map((link) => link.hash.slice(1)).filter(Boolean),
+    );
+    let inheritedId = "inicio";
+
+    const observedSections = Array.from(
+      document.querySelectorAll<HTMLElement>("main > section"),
+    ).map((section) => {
+      if (validIds.has(section.id)) inheritedId = section.id;
+      return { section, id: inheritedId };
+    });
+
+    const activateLink = (id: string) => {
+      links.forEach((link) => {
+        if (link.hash === `#${id}`) {
+          link.setAttribute("aria-current", "location");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((entry) => entry.isIntersecting);
+        if (!visible) return;
+
+        const match = observedSections.find(
+          ({ section }) => section === visible.target,
+        );
+        if (match) activateLink(match.id);
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+
+    observedSections.forEach(({ section }) => observer.observe(section));
+
+    const mobileNav = header.querySelector<HTMLDetailsElement>(".mobile-nav");
+    const mobileSummary = mobileNav?.querySelector<HTMLElement>("summary");
+
+    mobileNav?.addEventListener("click", (event) => {
+      if ((event.target as Element).closest("a")) mobileNav.open = false;
+    });
+
+    document.addEventListener("pointerdown", (event) => {
+      if (mobileNav?.open && !mobileNav.contains(event.target as Node)) {
+        mobileNav.open = false;
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && mobileNav?.open) {
+        mobileNav.open = false;
+        mobileSummary?.focus();
+      }
+    });
+  }
+</script>
