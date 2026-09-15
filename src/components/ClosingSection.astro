@@ -226,4 +226,82 @@ const navItems = [
 
     font-weight: 300;
   }
+
+  @media (max-width: 900px) {
+    .closing-heading {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .closing-heading img {
+      width: 160px;
+    }
+
+    .closing-heading > div {
+      max-width: 680px;
+    }
+
+    .closing-visual :global(img) {
+      right: 40px;
+    }
+
+    .footer nav {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .closing-top {
+      padding-top: 32px;
+      padding-bottom: 24px;
+    }
+
+    .closing-heading {
+      gap: 24px;
+    }
+
+    .closing-heading img {
+      width: 120px;
+    }
+
+    .closing-heading > div > p {
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .closing-contact {
+      padding-top: 32px;
+    }
+
+    .contact-list a {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 14px;
+    }
+
+    .contact-list strong {
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+
+    .closing-visual :global(img) {
+      width: 240px;
+      right: -40px;
+      top: -120px;
+    }
+
+    .footer nav {
+      flex-wrap: wrap;
+      gap: 16px 24px;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
 </style>

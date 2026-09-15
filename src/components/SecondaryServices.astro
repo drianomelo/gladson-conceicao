@@ -239,4 +239,61 @@ const services = [
     font-size: 14px;
     font-weight: 500;
   }
+
+  @media (max-width: 1000px) {
+    .secondary-services {
+      padding-block: 64px;
+    }
+
+    .secondary-services-title {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .secondary-services-title h2 {
+      max-width: 720px;
+      font-size: clamp(40px, 6vw, 48px);
+      line-height: 1.08;
+    }
+
+    .secondary-services-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .secondary-services {
+      padding-block: 48px;
+    }
+
+    .secondary-services-header {
+      margin-bottom: 32px;
+    }
+
+    .secondary-services-header > span {
+      height: 36px;
+      margin-bottom: 20px;
+      font-size: 12px;
+    }
+
+    .secondary-services-title h2 {
+      font-size: clamp(32px, 10vw, 40px);
+    }
+
+    .secondary-services-title a {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .secondary-services-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .service-card:hover {
+      flex-direction: column;
+    }
+  }
 </style>

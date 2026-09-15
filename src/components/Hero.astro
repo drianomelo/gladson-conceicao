@@ -93,9 +93,9 @@ import documento from "../assets/images/hero-tag-3.webp";
   .hero {
     margin-inline: 20px;
     position: relative;
-    min-height: 760px;
     overflow: hidden;
     border-radius: 24px;
+    container-type: inline-size;
   }
 
   .hero-overlay {
@@ -104,7 +104,7 @@ import documento from "../assets/images/hero-tag-3.webp";
     z-index: 0;
     background: var(--color-primary);
   }
-  
+
   .hero-bg {
     position: absolute;
     inset: 0;
@@ -126,21 +126,26 @@ import documento from "../assets/images/hero-tag-3.webp";
     flex-direction: column;
     justify-content: space-between;
 
-    min-height: 760px;
+    min-height: clamp(620px, 54.3cqw, 760px);
     padding-inline: 24px;
     padding-block: 32px;
+
+    container-type: inline-size;
   }
 
   .hero h1 {
     font-family: var(--font-serif);
-    font-size: clamp(72px, 9vw, 171px);
+
+    font-size: min(9.35cqw, 171px);
+
     font-weight: 400;
     line-height: 0.8;
     letter-spacing: 0.0815em;
-    text-align: start;
-    white-space: nowrap;
-    margin-bottom: 24px;
 
+    white-space: nowrap;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 24px;
     color: var(--color-background);
   }
 
@@ -149,13 +154,15 @@ import documento from "../assets/images/hero-tag-3.webp";
     z-index: 3;
 
     left: 50%;
-    bottom: -205px;
-
+    top: -10px;
     transform: translateX(-50%);
+
+    width: clamp(650px, 55.7cqw, 780px);
   }
 
   .hero-lawyer :global(img) {
-    width: 780px;
+    width: 100%;
+    max-width: none;
     height: auto;
   }
 
@@ -215,8 +222,9 @@ import documento from "../assets/images/hero-tag-3.webp";
   }
 
   .hero-tag-services {
-    left: -20px;
-    top: 470px;
+    left: 0;
+    top: 52%;
+    transform: translateX(-8%);
   }
 
   .hero-tag-lawyer {
@@ -225,8 +233,8 @@ import documento from "../assets/images/hero-tag-3.webp";
     align-items: flex-start;
     gap: 0;
 
-    right: 60px;
-    top: 390px;
+    right: 0;
+    top: 42%;
   }
 
   .tag-images {
@@ -254,7 +262,7 @@ import documento from "../assets/images/hero-tag-3.webp";
   }
 
   .hero-pills {
-    width: 380px;
+    width: 300px;
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
@@ -291,73 +299,167 @@ import documento from "../assets/images/hero-tag-3.webp";
     border-radius: 999px;
   }
 
-  @media (max-width: 900px) {
-    .hero,
-    .hero-inner {
-      min-height: 720px;
+  @media (max-width: 1200px) {
+    .hero-copy {
+      font-size: 15px;
+      line-height: 1.4;
     }
 
-    .hero-copy {
-      display: none;
+    .hero-copy-left {
+      width: 340px;
+    }
+
+    .hero-copy-right {
+      width: 320px;
     }
 
     .hero h1 {
-      top: 130px;
-      white-space: normal;
-      font-size: clamp(58px, 13vw, 90px);
+      font-size: min(9.2cqw, 110px);
     }
 
-    .hero-lawyer :global(img) {
-      width: 420px;
+    .hero-lawyer {
+      width: clamp(610px, 62cqw, 720px);
+    }
+
+    .hero-pills {
+      width: 280px;
+    }
+
+    .hero-pills span {
+      height: 36px;
+      padding-inline: 20px;
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      margin-inline: 16px;
+      border-radius: 20px;
+    }
+
+    .hero-inner {
+      z-index: 3;
+      min-height: 680px;
+      padding: 28px 20px;
+    }
+
+    .hero h1 {
+      font-size: min(9.1cqw, 76px);
+      letter-spacing: 0.065em;
+    }
+
+    .hero-lawyer {
+      z-index: 2;
+      top: 50px;
+      width: 600px;
+    }
+
+    .hero-copy {
+      display: block;
+
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .hero-copy-left {
+      width: 300px;
+    }
+
+    .hero-copy-right {
+      display: none;
     }
 
     .hero-tag-services {
-      left: 24px;
-      top: 360px;
+      top: 48%;
     }
 
     .hero-tag-lawyer {
-      right: 24px;
-      top: 430px;
+      top: 40%;
+    }
+
+    .hero-bottom {
+      position: relative;
+      z-index: 4;
+    }
+
+    .hero-pills {
+      width: 260px;
     }
   }
 
   @media (max-width: 600px) {
-    .hero,
+    .hero {
+      margin-inline: 10px;
+      border-radius: 18px;
+    }
+
     .hero-inner {
-      min-height: 680px;
+      min-height: 640px;
+      padding: 24px 16px;
     }
 
     .hero h1 {
-      top: 110px;
-      font-size: 58px;
+      font-size: clamp(27px, 9.2cqw, 50px);
       line-height: 0.95;
+      letter-spacing: 0.04em;
+      text-align: center;
     }
 
-    .hero-lawyer :global(img) {
-      width: 340px;
+    .hero-lawyer {
+      top: 82px;
+      width: 500px;
     }
 
-    .hero-tag {
-      transform: scale(0.92);
+    .hero-copy {
+      font-size: 13px;
+    }
+
+    .hero-copy-left {
+      width: min(270px, 80%);
     }
 
     .hero-tag-services {
-      left: 8px;
-      top: 330px;
+      display: none;
     }
 
     .hero-tag-lawyer {
-      right: 8px;
-      top: 410px;
+      right: 96px;
+      top: 300px;
+
+      height: 52px;
+    }
+
+    .hero-tag-lawyer strong {
+      font-size: 11px;
+    }
+
+    .hero-tag-lawyer span {
+      font-size: 9px;
     }
 
     .hero-bottom {
-      align-items: flex-end;
+      display: flex;
+      justify-content: flex-end;
     }
 
     .hero-pills {
-      max-width: 75%;
+      display: none;
+    }
+
+    .hero-bottom a {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .hero-lawyer {
+      left: 53%;
+      width: 470px;
+    }
+
+    .hero-tag-lawyer {
+      right: 86px;
     }
   }
 </style>

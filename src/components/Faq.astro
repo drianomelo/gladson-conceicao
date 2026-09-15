@@ -198,4 +198,74 @@ const faqs = [
     margin-top: 20px;
     opacity: 1;
   }
+
+  @media (max-width: 900px) {
+    .faq {
+      padding-block: 64px;
+    }
+
+    .faq-layout {
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .faq-header,
+    .faq-list {
+      max-width: none;
+      width: 100%;
+    }
+
+    #faq-title {
+      max-width: 680px;
+      font-size: clamp(36px, 6vw, 40px);
+      line-height: 1.1;
+    }
+
+    .faq-header > p {
+      max-width: 540px;
+      line-height: 1.5;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .faq {
+      padding-block: 48px;
+    }
+
+    .faq-layout {
+      gap: 32px;
+    }
+
+    .faq-header > span {
+      height: 36px;
+      margin-bottom: 20px;
+      font-size: 12px;
+    }
+
+    #faq-title {
+      font-size: clamp(30px, 9vw, 36px);
+    }
+
+    .faq-header > p {
+      font-size: 14px;
+    }
+
+    .faq-list {
+      gap: 12px;
+    }
+
+    .faq-item {
+      padding: 22px 20px;
+      border-radius: 12px;
+    }
+
+    .faq-question {
+      gap: 20px;
+    }
+
+    .faq-question > span {
+      font-size: 16px;
+      line-height: 1.25;
+    }
+  }
 </style>

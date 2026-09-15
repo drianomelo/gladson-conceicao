@@ -38,4 +38,48 @@
     font-size: 16px;
     opacity: 50%;
   }
+
+  @media (max-width: 900px) {
+    .positioning {
+      padding-block: 64px;
+    }
+
+    .positioning-inner {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .positioning-inner h2 {
+      max-width: 680px;
+      font-size: clamp(40px, 7vw, 56px);
+      line-height: 1.08;
+    }
+
+    .positioning-inner p {
+      width: min(100%, 480px);
+      line-height: 1.5;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .positioning {
+      padding-block: 48px;
+    }
+
+    .positioning-inner {
+      gap: 20px;
+    }
+
+    .positioning-inner h2 {
+      font-size: clamp(32px, 10vw, 42px);
+    }
+
+    .positioning-inner h2 span {
+      display: inline;
+    }
+
+    .positioning-inner p {
+      font-size: 14px;
+    }
+  }
 </style>
