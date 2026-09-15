@@ -1,0 +1,107 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import ClosingSection from "../components/ClosingSection.astro";
+---
+
+<BaseLayout
+  title="Página não encontrada | Gladson Conceição"
+  description="A página solicitada não foi encontrada."
+  noindex={true}
+>
+  <Header />
+  <main id="main-content">
+    <section class="not-found" aria-labelledby="not-found-title">
+      <div class="container not-found-inner">
+        <span aria-hidden="true">404</span>
+        <p>Página não encontrada</p>
+        <h1 id="not-found-title">Este caminho não existe ou foi alterado.</h1>
+        <div class="actions">
+          <a class="primary" href="/">Voltar ao início</a>
+          <a href="/areas-de-atuacao">Ver áreas de atuação</a>
+        </div>
+      </div>
+    </section>
+    <ClosingSection />
+  </main>
+</BaseLayout>
+
+<style>
+  .not-found {
+    margin: 0 20px 72px;
+    overflow: hidden;
+    border-radius: 24px;
+    background: var(--color-primary);
+    color: var(--color-background);
+  }
+
+  .not-found-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 600px;
+  }
+
+  .not-found-inner > span {
+    position: absolute;
+    right: -0.05em;
+    bottom: -0.25em;
+    color: rgba(246, 241, 232, 0.045);
+    font-family: var(--font-serif);
+    font-size: clamp(260px, 45vw, 680px);
+    line-height: 1;
+  }
+
+  .not-found p {
+    margin-bottom: 18px;
+    color: rgba(246, 241, 232, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 12px;
+  }
+
+  h1 {
+    z-index: 1;
+    max-width: 820px;
+    font-family: var(--font-serif);
+    font-size: clamp(50px, 7vw, 96px);
+    font-weight: 400;
+    line-height: 0.98;
+  }
+
+  .actions {
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 42px;
+  }
+
+  .actions a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    padding-inline: 20px;
+    border: 1px solid rgba(246, 241, 232, 0.3);
+    border-radius: 999px;
+    font-size: 13px;
+  }
+
+  .actions .primary {
+    border-color: var(--color-background);
+    background: var(--color-background);
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 600px) {
+    .not-found {
+      margin: 0 10px 48px;
+      border-radius: 18px;
+    }
+
+    .not-found-inner {
+      min-height: 540px;
+    }
+  }
+</style>

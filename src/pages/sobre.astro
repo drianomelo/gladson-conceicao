@@ -1,0 +1,199 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import InternalHero from "../components/InternalHero.astro";
+import About from "../components/About.astro";
+import ContactCta from "../components/ContactCta.astro";
+import ClosingSection from "../components/ClosingSection.astro";
+
+const values = [
+  [
+    "Clareza",
+    "Informações jurídicas explicadas de forma compreensível, sem perder a precisão técnica.",
+  ],
+  [
+    "Responsabilidade",
+    "Análise cuidadosa das particularidades e dos efeitos de cada decisão.",
+  ],
+  [
+    "Proximidade",
+    "Atendimento atento ao contexto familiar e patrimonial de cada pessoa.",
+  ],
+  [
+    "Estratégia",
+    "Escolha de caminhos compatíveis com os objetivos e os limites legais do caso.",
+  ],
+];
+---
+
+<BaseLayout
+  title="Sobre Gladson Conceição | Advogado Sucessório"
+  description="Conheça a formação, a trajetória e a forma de atuação de Gladson Conceição, advogado com foco em Direito Sucessório. OAB/SE 14.418."
+>
+  <Header />
+  <main id="main-content">
+    <InternalHero
+      eyebrow="Trajetória e propósito"
+      title="Sobre Gladson"
+      description="Formação jurídica e olhar interdisciplinar para orientar decisões que envolvem família, patrimônio e futuro."
+      current="Sobre"
+    />
+
+    <section class="manifesto" aria-labelledby="manifesto-title">
+      <div class="container manifesto-grid">
+        <span data-reveal="right">Uma advocacia de escuta</span>
+        <div data-reveal="up">
+          <h2 id="manifesto-title">
+            Direito Sucessório exige técnica, mas também sensibilidade.
+          </h2>
+          <p>
+            Questões sucessórias aparecem em momentos importantes da vida e
+            frequentemente reúnem expectativas, relações familiares e decisões
+            patrimoniais. Por isso, o trabalho parte da escuta e da compreensão
+            do contexto antes da indicação de qualquer caminho jurídico.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <About />
+
+    <section class="values" aria-labelledby="values-title">
+      <div class="container">
+        <div class="values-heading" data-reveal="up">
+          <span>Forma de atuar</span>
+          <h2 id="values-title">Princípios presentes em cada atendimento</h2>
+        </div>
+        <div class="values-grid">
+          {
+            values.map(([title, text], index) => (
+              <article data-reveal="up">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <ContactCta />
+    <ClosingSection />
+  </main>
+</BaseLayout>
+
+<style>
+  .manifesto {
+    padding-block: 96px;
+  }
+
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: 0.4fr 1fr;
+    gap: 80px;
+  }
+
+  .manifesto-grid > span,
+  .values-heading > span {
+    color: rgba(28, 28, 28, 0.48);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .manifesto h2,
+  .values h2 {
+    max-width: 850px;
+    font-size: clamp(42px, 5.4vw, 72px);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+  }
+
+  .manifesto p {
+    max-width: 660px;
+    margin-top: 32px;
+    color: rgba(28, 28, 28, 0.62);
+    font-size: 18px;
+    line-height: 1.65;
+  }
+
+  .values {
+    padding-block: 96px 72px;
+  }
+
+  .values-heading {
+    display: grid;
+    grid-template-columns: 0.4fr 1fr;
+    gap: 80px;
+    margin-bottom: 56px;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .values article {
+    min-height: 280px;
+    padding: 26px;
+    border-top: 1px solid rgba(28, 28, 28, 0.2);
+    border-right: 1px solid rgba(28, 28, 28, 0.1);
+  }
+
+  .values article > span {
+    color: rgba(28, 28, 28, 0.32);
+    font-family: var(--font-serif);
+  }
+
+  .values h3 {
+    margin-top: 68px;
+    margin-bottom: 12px;
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 400;
+  }
+
+  .values article p {
+    color: rgba(28, 28, 28, 0.58);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 900px) {
+    .manifesto-grid,
+    .values-heading {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .values-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .manifesto,
+    .values {
+      padding-block: 56px;
+    }
+
+    .manifesto p {
+      font-size: 16px;
+    }
+
+    .values-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .values article {
+      min-height: auto;
+      border-right: 0;
+    }
+
+    .values h3 {
+      margin-top: 36px;
+    }
+  }
+</style>

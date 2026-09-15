@@ -1,0 +1,225 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import InternalHero from "../components/InternalHero.astro";
+import Attendance from "../components/Attendance.astro";
+import ClosingSection from "../components/ClosingSection.astro";
+import arrowIcon from "../assets/icons/arrow-up-right.svg";
+
+const whatsapp =
+  "https://wa.me/5579988697480?text=Ol%C3%A1%2C%20Dr.%20Gladson.%20Gostaria%20de%20conversar%20sobre%20uma%20quest%C3%A3o%20de%20Direito%20Sucess%C3%B3rio.";
+
+const contacts = [
+  {
+    label: "WhatsApp",
+    value: "(79) 98869-7480",
+    href: whatsapp,
+    external: true,
+  },
+  {
+    label: "E-mail",
+    value: "gladsonconceicao_santos@hotmail.com",
+    href: "mailto:gladsonconceicao_santos@hotmail.com",
+  },
+  {
+    label: "Instagram",
+    value: "@gladsonconceicao",
+    href: "https://www.instagram.com/gladsonconceicao/",
+    external: true,
+  },
+];
+---
+
+<BaseLayout
+  title="Contato | Gladson Conceição"
+  description="Entre em contato com Gladson Conceição para orientação em inventários, planejamento sucessório e outras questões patrimoniais."
+>
+  <Header />
+  <main id="main-content">
+    <InternalHero
+      eyebrow="Fale com o advogado"
+      title="Contato"
+      description="Conte brevemente sua situação para iniciarmos uma conversa clara sobre as possibilidades de atendimento."
+      current="Contato"
+    />
+
+    <section class="contact-options" aria-labelledby="contact-options-title">
+      <div class="container">
+        <div class="contact-heading" data-reveal="up">
+          <span>Canais de atendimento</span>
+          <div>
+            <h2 id="contact-options-title">Escolha a forma mais conveniente</h2>
+            <p>
+              O primeiro contato ajuda a identificar o assunto e a organizar os
+              próximos passos. O envio de uma mensagem não estabelece, por si
+              só, uma relação de contratação.
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          {
+            contacts.map((contact) => (
+              <a
+                href={contact.href}
+                target={contact.external ? "_blank" : undefined}
+                rel={contact.external ? "noopener noreferrer" : undefined}
+                data-reveal="up"
+              >
+                <span>{contact.label}</span>
+                <strong>{contact.value}</strong>
+                <img src={arrowIcon.src} alt="" width="13" height="13" />
+              </a>
+            ))
+          }
+        </div>
+
+        <div class="contact-note" data-reveal="up">
+          <span>Antes de enviar</span>
+          <p>
+            Para preservar sua privacidade, evite encaminhar documentos ou dados
+            sensíveis no primeiro contato. Essas informações serão solicitadas
+            por um canal adequado quando necessárias à análise.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <Attendance />
+    <ClosingSection />
+  </main>
+</BaseLayout>
+
+<style>
+  .contact-options {
+    padding-block: 96px 48px;
+  }
+
+  .contact-heading {
+    display: grid;
+    grid-template-columns: 0.4fr 1fr;
+    gap: 80px;
+    margin-bottom: 54px;
+  }
+
+  .contact-heading > span,
+  .contact-note > span {
+    color: rgba(28, 28, 28, 0.48);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .contact-heading > div {
+    display: grid;
+    grid-template-columns: 1fr 0.65fr;
+    gap: 48px;
+    align-items: end;
+  }
+
+  .contact-heading h2 {
+    font-size: clamp(42px, 5vw, 68px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .contact-heading p {
+    color: rgba(28, 28, 28, 0.6);
+    line-height: 1.6;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .contact-grid a {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+    padding: 28px;
+    overflow: hidden;
+    border-radius: 16px;
+    background: var(--color-white);
+    transition:
+      transform 220ms ease,
+      background-color 220ms ease;
+  }
+
+  .contact-grid a:hover,
+  .contact-grid a:focus-visible {
+    transform: translateY(-4px);
+    background: var(--color-primary);
+    color: var(--color-background);
+  }
+
+  .contact-grid a > span {
+    color: currentColor;
+    font-size: 12px;
+    opacity: 0.5;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .contact-grid strong {
+    max-width: 100%;
+    margin-top: auto;
+    font-family: var(--font-serif);
+    font-size: clamp(20px, 2vw, 28px);
+    font-weight: 400;
+    overflow-wrap: anywhere;
+  }
+
+  .contact-grid img {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+  }
+
+  .contact-grid a:hover img,
+  .contact-grid a:focus-visible img {
+    filter: invert(1);
+  }
+
+  .contact-note {
+    display: grid;
+    grid-template-columns: 0.4fr 1fr;
+    gap: 80px;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(28, 28, 28, 0.14);
+  }
+
+  .contact-note p {
+    max-width: 650px;
+    color: rgba(28, 28, 28, 0.52);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    .contact-heading,
+    .contact-heading > div,
+    .contact-note {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-grid a {
+      min-height: 170px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .contact-options {
+      padding-block: 56px 24px;
+    }
+  }
+</style>

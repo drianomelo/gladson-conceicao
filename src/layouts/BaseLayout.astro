@@ -1,15 +1,26 @@
 ---
 import "../styles/global.css";
+import socialImage from "../assets/images/hero-bg.webp";
 
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
 }
 
 const {
   title,
   description = "Advocacia com atuação em Direito Sucessório, Inventários e Planejamento Sucessório.",
+  image = socialImage.src,
+  schema,
+  noindex = false,
 } = Astro.props;
+
+const canonicalURL = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site)
+  : Astro.url;
 
 const legalServiceSchema = {
   "@context": "https://schema.org",
@@ -31,6 +42,14 @@ const legalServiceSchema = {
   ],
   sameAs: ["https://www.instagram.com/gladsonconceicao/"],
 };
+
+const pageSchema = schema ?? {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: title,
+  description,
+  url: canonicalURL.href,
+};
 ---
 
 <!doctype html>
@@ -43,7 +62,9 @@ const legalServiceSchema = {
     <meta name="description" content={description} />
     <meta
       name="robots"
-      content="index, follow, max-image-preview:large, max-snippet:-1"
+      content={noindex
+        ? "noindex, follow"
+        : "index, follow, max-image-preview:large, max-snippet:-1"}
     />
     <meta name="theme-color" content="#102a24" />
 
@@ -52,10 +73,15 @@ const legalServiceSchema = {
     <meta property="og:site_name" content="Gladson Conceição" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:image" content={new URL(image, canonicalURL).href} />
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, canonicalURL).href} />
+
+    <link rel="canonical" href={canonicalURL.href} />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -65,9 +91,15 @@ const legalServiceSchema = {
       is:inline
       set:html={JSON.stringify(legalServiceSchema)}
     />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(pageSchema)}
+    />
   </head>
 
   <body>
+    <a class="skip-link" href="#main-content">Ir para o conteúdo principal</a>
     <slot />
 
     <script>
@@ -158,6 +190,12 @@ const legalServiceSchema = {
               revealElements.push(element);
             });
         });
+
+        document
+          .querySelectorAll<HTMLElement>("[data-reveal]")
+          .forEach((element) => {
+            if (!revealElements.includes(element)) revealElements.push(element);
+          });
 
         document.addEventListener("animationend", (event) => {
           if (

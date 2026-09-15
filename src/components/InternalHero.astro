@@ -1,0 +1,202 @@
+---
+import logoGladson from "../assets/icons/logo-white.svg";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  current: string;
+}
+
+const { eyebrow, title, description, current } = Astro.props;
+---
+
+<section class="internal-hero" aria-labelledby="page-title">
+  <div class="internal-hero-glow" aria-hidden="true"></div>
+  <div class="container internal-hero-inner">
+    <nav
+      class="breadcrumb"
+      aria-label="Navegação estrutural"
+      data-reveal="down"
+    >
+      <a href="/">Início</a><span aria-hidden="true">/</span><span
+        aria-current="page">{current}</span
+      >
+    </nav>
+
+    <div class="internal-hero-copy">
+      <div>
+        <span class="eyebrow" data-reveal="up">{eyebrow}</span>
+        <h1 id="page-title" data-reveal="up">{title}</h1>
+      </div>
+      <p data-reveal="up">{description}</p>
+    </div>
+
+    <div class="hero-signature" data-reveal="up">
+      <img src={logoGladson.src} alt="" width="86" height="57" />
+      <span>Direito Sucessório<br />OAB/SE 14.418</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .internal-hero {
+    position: relative;
+    isolation: isolate;
+    min-height: 510px;
+    margin-inline: 20px;
+    overflow: hidden;
+    border-radius: 24px;
+    background: var(--color-primary);
+    color: var(--color-background);
+  }
+
+  .internal-hero::before {
+    content: "GC";
+    position: absolute;
+    z-index: -1;
+    right: -0.04em;
+    bottom: -0.3em;
+    color: rgba(246, 241, 232, 0.035);
+    font-family: var(--font-serif);
+    font-size: clamp(280px, 38vw, 620px);
+    line-height: 1;
+  }
+
+  .internal-hero-glow {
+    position: absolute;
+    z-index: -1;
+    width: 560px;
+    height: 560px;
+    right: 8%;
+    top: -65%;
+    border-radius: 50%;
+    background: rgba(169, 139, 99, 0.16);
+    filter: blur(80px);
+  }
+
+  .internal-hero-inner {
+    display: flex;
+    flex-direction: column;
+    min-height: 510px;
+    padding-block: 32px;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(246, 241, 232, 0.5);
+    font-size: 13px;
+  }
+
+  .breadcrumb a:hover,
+  .breadcrumb a:focus-visible {
+    color: var(--color-background);
+  }
+
+  .internal-hero-copy {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+    align-items: end;
+    gap: 64px;
+    margin-block: auto;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding-inline: 16px;
+    margin-bottom: 22px;
+    border: 1px solid rgba(246, 241, 232, 0.15);
+    border-radius: 999px;
+    color: rgba(246, 241, 232, 0.65);
+    font-size: 13px;
+  }
+
+  h1 {
+    max-width: 850px;
+    font-family: var(--font-serif);
+    font-size: clamp(56px, 7vw, 104px);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+  }
+
+  .internal-hero-copy > p {
+    max-width: 420px;
+    padding-bottom: 8px;
+    color: rgba(246, 241, 232, 0.66);
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+
+  .hero-signature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+    color: rgba(246, 241, 232, 0.45);
+    font-size: 10px;
+    line-height: 1.45;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-signature img {
+    width: 54px;
+    height: auto;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 900px) {
+    .internal-hero,
+    .internal-hero-inner {
+      min-height: 480px;
+    }
+
+    .internal-hero {
+      margin-inline: 16px;
+      border-radius: 20px;
+    }
+
+    .internal-hero-copy {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    h1 {
+      font-size: clamp(52px, 11vw, 82px);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .internal-hero,
+    .internal-hero-inner {
+      min-height: 500px;
+    }
+
+    .internal-hero {
+      margin-inline: 10px;
+      border-radius: 18px;
+    }
+
+    .internal-hero-inner {
+      padding-block: 24px;
+    }
+
+    h1 {
+      font-size: clamp(45px, 14vw, 68px);
+    }
+
+    .internal-hero-copy > p {
+      font-size: 15px;
+    }
+
+    .breadcrumb {
+      font-size: 12px;
+    }
+  }
+</style>

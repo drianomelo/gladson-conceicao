@@ -1,0 +1,158 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import InternalHero from "../components/InternalHero.astro";
+import ClosingSection from "../components/ClosingSection.astro";
+---
+
+<BaseLayout
+  title="Política de Privacidade | Gladson Conceição"
+  description="Entenda como informações pessoais podem ser tratadas ao utilizar o site e os canais de atendimento de Gladson Conceição."
+>
+  <Header />
+  <main id="main-content">
+    <InternalHero
+      eyebrow="Transparência e proteção"
+      title="Política de Privacidade"
+      description="Informações sobre privacidade, uso deste site e contato pelos canais de atendimento."
+      current="Política de Privacidade"
+    />
+
+    <article class="legal-content container" data-reveal="up">
+      <p class="updated">Última atualização: 15 de setembro de 2026.</p>
+
+      <section>
+        <h2>1. Sobre esta política</h2>
+        <p>
+          Esta política explica, de forma geral, como dados pessoais podem ser
+          tratados quando você acessa este site ou inicia contato com Gladson
+          Conceição dos Santos pelos canais disponibilizados.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. Informações fornecidas por você</h2>
+        <p>
+          O site não possui formulário próprio de coleta. Ao utilizar telefone,
+          e-mail, WhatsApp ou Instagram, você poderá fornecer voluntariamente
+          dados de identificação, contato e informações necessárias à
+          compreensão da sua solicitação. Evite enviar documentos ou dados
+          sensíveis no primeiro contato, salvo quando solicitado por canal
+          adequado.
+        </p>
+      </section>
+
+      <section>
+        <h2>3. Dados técnicos de acesso</h2>
+        <p>
+          A infraestrutura de hospedagem poderá registrar informações técnicas
+          essenciais à segurança e ao funcionamento do site, como endereço IP,
+          data e horário de acesso, navegador e páginas visitadas. Este site não
+          utiliza, por iniciativa própria, cookies publicitários ou ferramentas
+          de perfilamento.
+        </p>
+      </section>
+
+      <section>
+        <h2>4. Finalidades</h2>
+        <p>
+          As informações recebidas podem ser utilizadas para responder ao
+          contato, avaliar a possibilidade de atendimento, prestar serviços
+          eventualmente contratados, cumprir obrigações legais e profissionais e
+          proteger a segurança dos canais utilizados.
+        </p>
+      </section>
+
+      <section>
+        <h2>5. Serviços de terceiros</h2>
+        <p>
+          Os links para WhatsApp e Instagram direcionam a plataformas externas,
+          que possuem suas próprias políticas e práticas de privacidade. O envio
+          de e-mail também depende dos provedores utilizados pelo remetente e
+          pelo destinatário.
+        </p>
+      </section>
+
+      <section>
+        <h2>6. Compartilhamento e conservação</h2>
+        <p>
+          Dados não são comercializados. Informações poderão ser compartilhadas
+          quando necessário à prestação do serviço, ao funcionamento dos canais,
+          ao cumprimento de obrigação legal ou à proteção de direitos,
+          observados os deveres de sigilo aplicáveis. A conservação ocorre pelo
+          tempo necessário às respectivas finalidades e obrigações.
+        </p>
+      </section>
+
+      <section>
+        <h2>7. Seus direitos e contato</h2>
+        <p>
+          Solicitações relacionadas aos seus dados pessoais podem ser
+          encaminhadas para
+          <a href="mailto:gladsonconceicao_santos@hotmail.com">
+            gladsonconceicao_santos@hotmail.com</a
+          >. Para permitir a verificação segura, poderão ser solicitadas
+          informações adicionais de identificação.
+        </p>
+      </section>
+
+      <section>
+        <h2>8. Alterações</h2>
+        <p>
+          Esta política poderá ser atualizada para refletir mudanças no site,
+          nos canais utilizados ou em requisitos aplicáveis. A data da versão
+          mais recente será indicada no início desta página.
+        </p>
+      </section>
+    </article>
+
+    <ClosingSection />
+  </main>
+</BaseLayout>
+
+<style>
+  .legal-content {
+    max-width: 820px;
+    padding-block: 80px 96px;
+  }
+
+  .updated {
+    margin-bottom: 48px;
+    color: rgba(28, 28, 28, 0.5);
+    font-size: 13px;
+  }
+
+  section + section {
+    margin-top: 44px;
+  }
+
+  h2 {
+    margin-bottom: 12px;
+    font-family: var(--font-serif);
+    font-size: 27px;
+    font-weight: 500;
+  }
+
+  p {
+    color: rgba(28, 28, 28, 0.68);
+    line-height: 1.75;
+  }
+
+  a {
+    color: var(--color-primary-alt);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 600px) {
+    .legal-content {
+      padding-block: 56px 64px;
+    }
+
+    section + section {
+      margin-top: 36px;
+    }
+  }
+</style>
