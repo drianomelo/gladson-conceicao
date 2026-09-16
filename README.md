@@ -1,43 +1,59 @@
-# Astro Starter Kit: Minimal
+# Gladson Conceição — Direito Sucessório
+
+Site institucional estático desenvolvido com Astro e preparado para publicação no Cloudflare Pages.
+
+## Requisitos
+
+- Node.js 22.19.0 ou superior
+- npm 10 ou superior
+
+## Desenvolvimento
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npx astro dev --background
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Gerencie o servidor em segundo plano com:
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+npx astro dev status
+npx astro dev logs
+npx astro dev stop
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Validação
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```sh
+npm run check
+npm run format:check
+npm run build
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+O build estático é gerado em `dist/`.
 
-## 🧞 Commands
+## Cloudflare Pages
 
-All commands are run from the root of the project, from a terminal:
+Configure o projeto com:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- Framework preset: `Astro`
+- Production branch: `master`
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Root directory: `/`
+- Node.js: definido por `.node-version`
 
-## 👀 Want to learn more?
+O projeto não precisa do adaptador `@astrojs/cloudflare`, pois todas as páginas são geradas estaticamente.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Depois do primeiro deploy:
+
+1. Adicione `gladsonconceicao.com.br` e `www.gladsonconceicao.com.br` em **Custom domains**.
+2. Defina `gladsonconceicao.com.br` como domínio principal.
+3. Crie uma regra de redirecionamento permanente de `www` para o domínio principal.
+4. Confirme que os headers definidos em `public/_headers` estão presentes nas respostas.
+
+## Domínio e SEO
+
+O domínio canônico é configurado em `astro.config.mjs`. Sitemap e robots são gerados nas rotas `/sitemap.xml` e `/robots.txt`.
+
+Caso o domínio definitivo mude, atualize `site` em `astro.config.mjs` antes de publicar.

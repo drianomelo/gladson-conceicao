@@ -1,5 +1,6 @@
 ---
-import brazilMap from "../assets/images/brazil-map.svg";
+import { Image } from "astro:assets";
+import brazilMap from "../assets/images/brazil-map.webp";
 import logoGladson from "../assets/icons/logo-gladson-black.png";
 import iconLocation from "../assets/icons/location.svg";
 import iconMap from "../assets/icons/map.svg";
@@ -32,7 +33,7 @@ import iconGlobe from "../assets/icons/globe.svg";
     </div>
 
     <div class="attendance-map" aria-hidden="true">
-      <img src={brazilMap.src} alt="" width="480" height="480" />
+      <Image src={brazilMap} alt="" width={480} loading="lazy" quality={82} />
     </div>
 
     <div class="attendance-info">

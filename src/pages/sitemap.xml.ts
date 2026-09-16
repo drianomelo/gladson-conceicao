@@ -4,11 +4,11 @@ export function GET({ site }: { site: URL | undefined }) {
   const base = site ?? new URL("https://gladsonconceicao.com.br");
   const paths = [
     "/",
-    "/areas-de-atuacao",
-    ...services.map((service) => `/areas-de-atuacao/${service.slug}`),
-    "/sobre",
-    "/contato",
-    "/politica-de-privacidade",
+    "/areas-de-atuacao/",
+    ...services.map((service) => `/areas-de-atuacao/${service.slug}/`),
+    "/sobre/",
+    "/contato/",
+    "/politica-de-privacidade/",
   ];
   const urls = paths
     .map((path) => `<url><loc>${new URL(path, base).href}</loc></url>`)
