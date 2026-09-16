@@ -1,5 +1,5 @@
 ---
-import logoGladson from "../assets/icons/logo-white.svg";
+import logoGladson from "../assets/icons/logo-gladson-black-hd.png";
 
 interface Props {
   eyebrow: string;
@@ -149,6 +149,7 @@ const { eyebrow, title, description, current } = Astro.props;
     width: 54px;
     height: auto;
     opacity: 0.7;
+    filter: brightness(0) invert(1);
   }
 
   @media (max-width: 900px) {

@@ -1,5 +1,5 @@
 ---
-import logoGladson from "../assets/icons/logo-white.svg";
+import logoGladson from "../assets/icons/logo-gladson-black-hd.png";
 import heroBg from "../assets/images/hero-bg.webp";
 import iconCheck from "../assets/icons/check.svg";
 
@@ -84,6 +84,8 @@ import { Image } from "astro:assets";
             data-service-image
             width={592}
             height={444}
+            widths={[480, 592]}
+            sizes="(max-width: 760px) calc(100vw - 32px), 592px"
             quality={85}
           />
           <div class="services-overlay"></div>
@@ -306,6 +308,7 @@ import { Image } from "astro:assets";
     width: 24px;
     height: auto;
     flex-shrink: 0;
+    filter: brightness(0) invert(1);
   }
 
   .services-display {

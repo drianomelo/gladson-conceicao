@@ -1,6 +1,6 @@
 ---
 import columnImg from "../assets/images/footer-column.png";
-import logoGladson from "../assets/icons/logo-white.svg";
+import logoGladson from "../assets/icons/logo-gladson-black-hd.png";
 import { Image } from "astro:assets";
 
 const currentYear = new Date().getFullYear();
@@ -128,6 +128,7 @@ const navItems = [
     flex-shrink: 0;
     height: auto;
     opacity: 80%;
+    filter: brightness(0) invert(1);
   }
 
   .closing-heading > div {

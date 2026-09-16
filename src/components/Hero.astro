@@ -13,7 +13,7 @@ import documento from "../assets/images/hero-tag-3.webp";
 <section class="hero" id="inicio">
   <div class="hero-overlay"></div>
 
-  <Image src={heroBg} alt="" class="hero-bg" loading="eager" />
+  <Image src={heroBg} alt="" class="hero-bg" priority />
 
   <div class="hero-inner">
     <div>
@@ -64,6 +64,8 @@ import documento from "../assets/images/hero-tag-3.webp";
       src={gladsonHero}
       alt="Gladson Conceição, advogado"
       width={780}
+      widths={[500, 650, 780]}
+      sizes="(max-width: 600px) 500px, (max-width: 900px) 600px, 780px"
       quality={90}
       format="webp"
       loading="eager"

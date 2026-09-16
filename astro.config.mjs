@@ -5,4 +5,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: "https://gladsonconceicao.com.br",
   trailingSlash: "always",
+  build: {
+    inlineStylesheets: "always",
+  },
 });
