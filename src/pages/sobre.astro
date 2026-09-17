@@ -5,6 +5,47 @@ import InternalHero from "../components/InternalHero.astro";
 import About from "../components/About.astro";
 import ContactCta from "../components/ContactCta.astro";
 import ClosingSection from "../components/ClosingSection.astro";
+import gladsonAbout from "../assets/images/about-gladson.png";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const homeURL = new URL("/", canonicalURL);
+const profileImageURL = new URL(gladsonAbout.src, canonicalURL);
+const title = "Gladson Conceição | Advogado Sucessório em Sergipe";
+const description =
+  "Conheça a formação, a trajetória e a forma de atuação de Gladson Conceição, advogado com foco em Direito Sucessório. OAB/SE 14.418.";
+
+const profileSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": `${canonicalURL.href}#profile-page`,
+  url: canonicalURL.href,
+  name: title,
+  description,
+  mainEntity: {
+    "@type": "Person",
+    "@id": `${homeURL.href}#person`,
+    name: "Gladson Conceição dos Santos",
+    alternateName: "Gladson Conceição",
+    url: canonicalURL.href,
+    image: profileImageURL.href,
+    jobTitle: "Advogado",
+    description:
+      "Advogado inscrito na OAB/SE nº 14.418, com atuação em Direito Sucessório, Inventários e Planejamento Sucessório.",
+    identifier: {
+      "@type": "PropertyValue",
+      propertyID: "OAB/SE",
+      value: "14.418",
+    },
+    knowsAbout: [
+      "Direito Sucessório",
+      "Inventários",
+      "Planejamento Sucessório",
+      "Testamentos",
+      "Doações",
+    ],
+    sameAs: ["https://www.instagram.com/gladsonconceicao/"],
+  },
+};
 
 const values = [
   [
@@ -26,10 +67,7 @@ const values = [
 ];
 ---
 
-<BaseLayout
-  title="Gladson Conceição | Advogado Sucessório em Sergipe"
-  description="Conheça a formação, a trajetória e a forma de atuação de Gladson Conceição, advogado com foco em Direito Sucessório. OAB/SE 14.418."
->
+<BaseLayout {title} {description} schema={profileSchema}>
   <Header />
   <main id="main-content">
     <InternalHero

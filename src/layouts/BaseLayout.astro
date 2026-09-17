@@ -28,6 +28,16 @@ const canonicalURL = Astro.site
 const homeURL = new URL("/", canonicalURL);
 const socialImageURL = new URL(image, canonicalURL);
 const brandLogoURL = new URL(brandLogo.src, canonicalURL);
+const isHomePage = canonicalURL.pathname === "/";
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${homeURL.href}#website`,
+  url: homeURL.href,
+  name: "Gladson Conceição",
+  alternateName: ["Gladson Conceição dos Santos", "gladsonconceicao.com.br"],
+};
 
 const legalServiceSchema = {
   "@context": "https://schema.org",
@@ -109,7 +119,17 @@ const pageSchema = schema ?? {
 
     <link rel="canonical" href={canonicalURL.href} />
 
-    <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192" />
+
+    {
+      isHomePage && (
+        <script
+          type="application/ld+json"
+          is:inline
+          set:html={JSON.stringify(websiteSchema)}
+        />
+      )
+    }
 
     <script
       type="application/ld+json"
